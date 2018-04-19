@@ -46,6 +46,162 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
+            /// <param name='clientId'>
+            /// </param>
+            public static PaymentTransactionResponse GetLastByDate(this IPaymentSystemAPI operations, string clientId = default(string))
+            {
+                return operations.GetLastByDateAsync(clientId).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='clientId'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<PaymentTransactionResponse> GetLastByDateAsync(this IPaymentSystemAPI operations, string clientId = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetLastByDateWithHttpMessagesAsync(clientId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='amount'>
+            /// </param>
+            /// <param name='created'>
+            /// </param>
+            /// <param name='status'>
+            /// Possible values include: 'Created', 'NotifyProcessed', 'NotifyDeclined',
+            /// 'Processing'
+            /// </param>
+            /// <param name='paymentSystem'>
+            /// Possible values include: 'Unknown', 'CreditVoucher', 'Bitcoin', 'Ethereum',
+            /// 'Swift', 'SolarCoin', 'ChronoBank', 'Fxpaygate', 'Quanta'
+            /// </param>
+            /// <param name='feeAmount'>
+            /// </param>
+            /// <param name='id'>
+            /// </param>
+            /// <param name='clientId'>
+            /// </param>
+            /// <param name='assetId'>
+            /// </param>
+            /// <param name='walletId'>
+            /// </param>
+            /// <param name='depositedAmount'>
+            /// </param>
+            /// <param name='depositedAssetId'>
+            /// </param>
+            /// <param name='rate'>
+            /// </param>
+            /// <param name='aggregatorTransactionId'>
+            /// </param>
+            /// <param name='info'>
+            /// </param>
+            /// <param name='otherData'>
+            /// </param>
+            /// <param name='meTransactionId'>
+            /// </param>
+            public static void PostPaymentTransaction(this IPaymentSystemAPI operations, double amount, System.DateTime created, PaymentStatus status, CashInPaymentSystem paymentSystem, double feeAmount, string id = default(string), string clientId = default(string), string assetId = default(string), string walletId = default(string), double? depositedAmount = default(double?), string depositedAssetId = default(string), double? rate = default(double?), string aggregatorTransactionId = default(string), string info = default(string), string otherData = default(string), string meTransactionId = default(string))
+            {
+                operations.PostPaymentTransactionAsync(amount, created, status, paymentSystem, feeAmount, id, clientId, assetId, walletId, depositedAmount, depositedAssetId, rate, aggregatorTransactionId, info, otherData, meTransactionId).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='amount'>
+            /// </param>
+            /// <param name='created'>
+            /// </param>
+            /// <param name='status'>
+            /// Possible values include: 'Created', 'NotifyProcessed', 'NotifyDeclined',
+            /// 'Processing'
+            /// </param>
+            /// <param name='paymentSystem'>
+            /// Possible values include: 'Unknown', 'CreditVoucher', 'Bitcoin', 'Ethereum',
+            /// 'Swift', 'SolarCoin', 'ChronoBank', 'Fxpaygate', 'Quanta'
+            /// </param>
+            /// <param name='feeAmount'>
+            /// </param>
+            /// <param name='id'>
+            /// </param>
+            /// <param name='clientId'>
+            /// </param>
+            /// <param name='assetId'>
+            /// </param>
+            /// <param name='walletId'>
+            /// </param>
+            /// <param name='depositedAmount'>
+            /// </param>
+            /// <param name='depositedAssetId'>
+            /// </param>
+            /// <param name='rate'>
+            /// </param>
+            /// <param name='aggregatorTransactionId'>
+            /// </param>
+            /// <param name='info'>
+            /// </param>
+            /// <param name='otherData'>
+            /// </param>
+            /// <param name='meTransactionId'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task PostPaymentTransactionAsync(this IPaymentSystemAPI operations, double amount, System.DateTime created, PaymentStatus status, CashInPaymentSystem paymentSystem, double feeAmount, string id = default(string), string clientId = default(string), string assetId = default(string), string walletId = default(string), double? depositedAmount = default(double?), string depositedAssetId = default(string), double? rate = default(double?), string aggregatorTransactionId = default(string), string info = default(string), string otherData = default(string), string meTransactionId = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                (await operations.PostPaymentTransactionWithHttpMessagesAsync(amount, created, status, paymentSystem, feeAmount, id, clientId, assetId, walletId, depositedAmount, depositedAssetId, rate, aggregatorTransactionId, info, otherData, meTransactionId, null, cancellationToken).ConfigureAwait(false)).Dispose();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='dateTime'>
+            /// </param>
+            /// <param name='paymentTransactionId'>
+            /// </param>
+            /// <param name='techData'>
+            /// </param>
+            /// <param name='message'>
+            /// </param>
+            /// <param name='who'>
+            /// </param>
+            public static void PostPaymentTransactionEventsLog(this IPaymentSystemAPI operations, System.DateTime dateTime, string paymentTransactionId = default(string), string techData = default(string), string message = default(string), string who = default(string))
+            {
+                operations.PostPaymentTransactionEventsLogAsync(dateTime, paymentTransactionId, techData, message, who).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='dateTime'>
+            /// </param>
+            /// <param name='paymentTransactionId'>
+            /// </param>
+            /// <param name='techData'>
+            /// </param>
+            /// <param name='message'>
+            /// </param>
+            /// <param name='who'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task PostPaymentTransactionEventsLogAsync(this IPaymentSystemAPI operations, System.DateTime dateTime, string paymentTransactionId = default(string), string techData = default(string), string message = default(string), string who = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                (await operations.PostPaymentTransactionEventsLogWithHttpMessagesAsync(dateTime, paymentTransactionId, techData, message, who, null, cancellationToken).ConfigureAwait(false)).Dispose();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
             /// <param name='amount'>
             /// </param>
             /// <param name='clientPaymentSystem'>
