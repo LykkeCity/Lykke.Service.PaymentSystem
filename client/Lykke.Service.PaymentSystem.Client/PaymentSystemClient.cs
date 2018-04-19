@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Common.Log;
 using Lykke.Service.PaymentSystem.Client.AutorestClient;
 using Lykke.Service.PaymentSystem.Client.AutorestClient.Models;
+using CashInPaymentSystem = Lykke.Contracts.Payments.CashInPaymentSystem;
+using PaymentStatus = Lykke.Contracts.Payments.PaymentStatus;
 
 namespace Lykke.Service.PaymentSystem.Client
 {
@@ -44,13 +46,13 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns>PaymentUrlDataResponse</returns>
         public async Task<PaymentUrlDataResponse> GetUrlDataAsync(
-            string clientPaymentSystem, 
-            string orderId, 
-            string clientId, 
-            double amount, 
+            string clientPaymentSystem,
+            string orderId,
+            string clientId,
+            double amount,
             string assetId,
-            string walletId, 
-            string isoCountryCode, 
+            string walletId,
+            string isoCountryCode,
             string otherInfoJson,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -65,7 +67,6 @@ namespace Lykke.Service.PaymentSystem.Client
                 otherInfoJson,
                 cancellationToken);
         }
-
 
         /// <summary>
         /// Insert PaymentTransaction
@@ -110,8 +111,8 @@ namespace Lykke.Service.PaymentSystem.Client
             await _service.PostPaymentTransactionAsync(
                 amount,
                 created,
-                status,
-                paymentSystem,
+                (AutorestClient.Models.PaymentStatus)Enum.Parse(typeof(AutorestClient.Models.PaymentStatus), status.ToString()),
+                (AutorestClient.Models.CashInPaymentSystem)Enum.Parse(typeof(AutorestClient.Models.CashInPaymentSystem), paymentSystem.ToString()),
                 feeAmount,
                 id,
                 clientId,
@@ -149,10 +150,10 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns></returns>
         public async Task InsertPaymentTransactionEventLogAsync(
-            DateTime dateTime, 
+            DateTime dateTime,
             string paymentTransactionId = default(string),
-            string techData = default(string), 
-            string message = default(string), 
+            string techData = default(string),
+            string message = default(string),
             string who = default(string),
             CancellationToken cancellationToken = default(CancellationToken))
         {
