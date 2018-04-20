@@ -39,7 +39,6 @@ namespace Lykke.Service.PaymentSystem.Client
         /// Insert PaymentTransaction
         /// </summary>
         /// <param name="amount">Amount</param>
-        /// <param name="created">Time of creation</param>
         /// <param name="status">PaymentStatus</param>
         /// <param name="paymentSystem">CashInPaymentSystem</param>
         /// <param name="feeAmount">Fee Amount</param>
@@ -56,7 +55,7 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <param name="meTransactionId">MeTransactionId</param>
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns></returns>
-        Task InsertPaymentTransactionAsync(double amount, DateTime created, PaymentStatus status, CashInPaymentSystem paymentSystem, double feeAmount, string id = default(string), string clientId = default(string), string assetId = default(string), string walletId = default(string), double? depositedAmount = default(double?), string depositedAssetId = default(string), double? rate = default(double?), string aggregatorTransactionId = default(string), string info = default(string), string otherData = default(string), string meTransactionId = default(string), CancellationToken cancellationToken = default(CancellationToken));
+        Task InsertPaymentTransactionAsync(double amount, PaymentStatus status, CashInPaymentSystem paymentSystem, double feeAmount, string id = default(string), string clientId = default(string), string assetId = default(string), string depositedAssetId = default(string), string walletId = default(string), string info = default(string), double? depositedAmount = default(double?), double? rate = default(double?), string aggregatorTransactionId = default(string), string otherData = default(string), string meTransactionId = default(string), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get last PaymentTransaction by date
@@ -69,13 +68,12 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <summary>
         /// Insert PaymentTransactionEventLog
         /// </summary>
-        /// <param name="dateTime">Time of creation</param>
         /// <param name="paymentTransactionId">PaymentTransactionId</param>
         /// <param name="techData">Technical data</param>
         /// <param name="message">Message</param>
         /// <param name="who">Who</param>
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns></returns>
-        Task InsertPaymentTransactionEventLogAsync(DateTime dateTime, string paymentTransactionId = default(string), string techData = default(string), string message = default(string), string who = default(string), CancellationToken cancellationToken = default(CancellationToken));
+        Task InsertPaymentTransactionEventLogAsync(string paymentTransactionId = default(string), string techData = default(string), string message = default(string), string who = default(string), CancellationToken cancellationToken = default(CancellationToken));
     }
 }

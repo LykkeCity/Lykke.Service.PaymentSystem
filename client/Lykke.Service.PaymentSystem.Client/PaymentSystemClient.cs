@@ -70,7 +70,6 @@ namespace Lykke.Service.PaymentSystem.Client
         /// Insert PaymentTransaction
         /// </summary>
         /// <param name="amount">Amount</param>
-        /// <param name="created">Time of creation</param>
         /// <param name="status">PaymentStatus</param>
         /// <param name="paymentSystem">CashInPaymentSystem</param>
         /// <param name="feeAmount">Fee Amount</param>
@@ -88,29 +87,28 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns></returns>
         public async Task InsertPaymentTransactionAsync(
-            double amount,
-            DateTime created,
-            PaymentStatus status,
-            CashInPaymentSystem paymentSystem,
-            double feeAmount,
-            string id = default(string),
-            string clientId = default(string),
-            string assetId = default(string),
-            string walletId = default(string),
-            double? depositedAmount = default(double?),
-            string depositedAssetId = default(string),
-            double? rate = default(double?),
-            string aggregatorTransactionId = default(string),
-            string info = default(string),
-            string otherData = default(string),
-            string meTransactionId = default(string),
+            double amount, 
+            PaymentStatus status, 
+            CashInPaymentSystem paymentSystem, 
+            double feeAmount, 
+            string id = default(string), 
+            string clientId = default(string), 
+            string assetId = default(string), 
+            string depositedAssetId = default(string), 
+            string walletId = default(string), 
+            string info = default(string), 
+            double? depositedAmount = default(double?), 
+            double? rate = default(double?), 
+            string aggregatorTransactionId = default(string), 
+            string otherData = default(string), 
+            string meTransactionId = default(string), 
             CancellationToken cancellationToken = default(CancellationToken))
         {
             await _service.PostPaymentTransactionAsync(
                 amount,
-                created,
-                (AutorestClient.Models.PaymentStatus)Enum.Parse(typeof(AutorestClient.Models.PaymentStatus), status.ToString()),
-                (AutorestClient.Models.CashInPaymentSystem)Enum.Parse(typeof(AutorestClient.Models.CashInPaymentSystem), paymentSystem.ToString()),
+                DateTime.UtcNow, 
+                (PaymentStatus)Enum.Parse(typeof(PaymentStatus), status.ToString()),
+                (CashInPaymentSystem)Enum.Parse(typeof(CashInPaymentSystem), paymentSystem.ToString()),
                 feeAmount,
                 id,
                 clientId,
@@ -140,7 +138,6 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <summary>
         /// Insert PaymentTransactionEventLog
         /// </summary>
-        /// <param name="dateTime">Time of creation</param>
         /// <param name="paymentTransactionId">PaymentTransactionId</param>
         /// <param name="techData">Technical data</param>
         /// <param name="message">Message</param>
@@ -148,14 +145,14 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns></returns>
         public async Task InsertPaymentTransactionEventLogAsync(
-            DateTime dateTime,
             string paymentTransactionId = default(string),
             string techData = default(string),
             string message = default(string),
             string who = default(string),
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            await _service.PostPaymentTransactionEventsLogAsync(dateTime,
+            await _service.PostPaymentTransactionEventsLogAsync(
+                DateTime.UtcNow,
                 paymentTransactionId,
                 techData,
                 message,
