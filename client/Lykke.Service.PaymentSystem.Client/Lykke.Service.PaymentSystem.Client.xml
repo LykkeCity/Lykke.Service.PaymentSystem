@@ -779,6 +779,38 @@
             The cancellation token.
             </param>
         </member>
+        <member name="T:Lykke.Service.PaymentSystem.Client.PaymentSystemExtensions">
+            <summary>
+            PaymentSystem extensions
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemExtensions.GetInfo(Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse,System.Type,System.Boolean)">
+            <summary>
+            GetInfo as object
+            </summary>
+            <param name="src"></param>
+            <param name="expectedType"></param>
+            <param name="throwExeption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemExtensions.GetInfo``1(Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse)">
+            <summary>
+            GetInfo as T
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="src"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lykke.Service.PaymentSystem.Client.Extensions.PaymentSystemsAndOtherInfo">
+            <summary>
+            PaymentSystemsAndOtherInfo
+            </summary>
+        </member>
+        <member name="F:Lykke.Service.PaymentSystem.Client.Extensions.PaymentSystemsAndOtherInfo.PsAndOtherInfoLinks">
+            <summary>
+            PaymentSystem And other info links
+            </summary>
+        </member>
         <member name="T:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient">
             <summary>
             PaymentSystemClient
@@ -799,12 +831,11 @@
             <param name="cancellationToken">CancellationToken</param>
             <returns>PaymentUrlDataResponse</returns>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.InsertPaymentTransactionAsync(System.Double,System.DateTime,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentStatus,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.CashInPaymentSystem,System.Double,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.InsertPaymentTransactionAsync(System.Double,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentStatus,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.CashInPaymentSystem,System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Double},System.String,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Insert PaymentTransaction
             </summary>
             <param name="amount">Amount</param>
-            <param name="created">Time of creation</param>
             <param name="status">PaymentStatus</param>
             <param name="paymentSystem">CashInPaymentSystem</param>
             <param name="feeAmount">Fee Amount</param>
@@ -830,11 +861,10 @@
             <param name="cancellationToken">CancellationToken</param>
             <returns>PaymentTransactionResponse</returns>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.InsertPaymentTransactionEventLogAsync(System.DateTime,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.InsertPaymentTransactionEventLogAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Insert PaymentTransactionEventLog
             </summary>
-            <param name="dateTime">Time of creation</param>
             <param name="paymentTransactionId">PaymentTransactionId</param>
             <param name="techData">Technical data</param>
             <param name="message">Message</param>
@@ -869,12 +899,11 @@
             <param name="cancellationToken">CancellationToken</param>
             <returns>PaymentUrlDataResponse</returns>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.InsertPaymentTransactionAsync(System.Double,System.DateTime,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentStatus,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.CashInPaymentSystem,System.Double,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.InsertPaymentTransactionAsync(System.Double,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentStatus,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.CashInPaymentSystem,System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Double},System.String,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Insert PaymentTransaction
             </summary>
             <param name="amount">Amount</param>
-            <param name="created">Time of creation</param>
             <param name="status">PaymentStatus</param>
             <param name="paymentSystem">CashInPaymentSystem</param>
             <param name="feeAmount">Fee Amount</param>
@@ -900,11 +929,10 @@
             <param name="cancellationToken">CancellationToken</param>
             <returns>PaymentTransactionResponse</returns>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.InsertPaymentTransactionEventLogAsync(System.DateTime,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.InsertPaymentTransactionEventLogAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Insert PaymentTransactionEventLog
             </summary>
-            <param name="dateTime">Time of creation</param>
             <param name="paymentTransactionId">PaymentTransactionId</param>
             <param name="techData">Technical data</param>
             <param name="message">Message</param>
