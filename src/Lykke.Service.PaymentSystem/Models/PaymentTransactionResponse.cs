@@ -1,6 +1,8 @@
 ﻿using System;
-using Lykke.Contracts.Payments;
 using Lykke.Service.PaymentSystem.Core.Domain;
+using CashInPaymentSystem = Lykke.Contracts.Payments.CashInPaymentSystem;
+using PaymentStatus = Lykke.Contracts.Payments.PaymentStatus;
+
 
 namespace Lykke.Service.PaymentSystem.Models
 {

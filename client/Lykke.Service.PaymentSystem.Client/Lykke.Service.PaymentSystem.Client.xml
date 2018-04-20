@@ -799,7 +799,7 @@
             <param name="cancellationToken">CancellationToken</param>
             <returns>PaymentUrlDataResponse</returns>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.InsertPaymentTransactionAsync(System.Double,System.DateTime,Lykke.Contracts.Payments.PaymentStatus,Lykke.Contracts.Payments.CashInPaymentSystem,System.Double,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.InsertPaymentTransactionAsync(System.Double,System.DateTime,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentStatus,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.CashInPaymentSystem,System.Double,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Insert PaymentTransaction
             </summary>
@@ -869,7 +869,7 @@
             <param name="cancellationToken">CancellationToken</param>
             <returns>PaymentUrlDataResponse</returns>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.InsertPaymentTransactionAsync(System.Double,System.DateTime,Lykke.Contracts.Payments.PaymentStatus,Lykke.Contracts.Payments.CashInPaymentSystem,System.Double,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.InsertPaymentTransactionAsync(System.Double,System.DateTime,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentStatus,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.CashInPaymentSystem,System.Double,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Insert PaymentTransaction
             </summary>

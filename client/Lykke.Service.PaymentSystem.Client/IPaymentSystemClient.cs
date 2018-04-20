@@ -2,8 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Lykke.Service.PaymentSystem.Client.AutorestClient.Models;
-using CashInPaymentSystem = Lykke.Contracts.Payments.CashInPaymentSystem;
-using PaymentStatus = Lykke.Contracts.Payments.PaymentStatus;
 
 namespace Lykke.Service.PaymentSystem.Client
 {
