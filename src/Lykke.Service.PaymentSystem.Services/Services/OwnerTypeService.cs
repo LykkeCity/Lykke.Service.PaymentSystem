@@ -6,7 +6,7 @@ using Lykke.Service.PaymentSystem.Core.Services;
 
 namespace Lykke.Service.PaymentSystem.Services.Services
 {
-    public class OwnerTypeService : IOwnerTypeService
+    public class OwnerTypeService : IOwnerTypeService, IService
     {
         private readonly IClientAccountClient _clientAccountClient;
 

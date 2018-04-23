@@ -3,7 +3,9 @@ using AzureStorage;
 using AzureStorage.Tables;
 using AzureStorage.Tables.Templates.Index;
 using Common.Log;
+using Lykke.Service.PaymentSystem.AzureRepositories;
 using Lykke.Service.PaymentSystem.AzureRepositories.Entities;
+using Lykke.Service.PaymentSystem.Core.Repositories;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings;
 using Lykke.SettingsReader;
 
@@ -33,6 +35,11 @@ namespace Lykke.Service.PaymentSystem.Services
             builder.Register(y => AzureTableStorage<PaymentTransactionEventLogEntity>.Create(
                     _settings.ConnectionString(x => x.Db.LogsConnString), "PaymentsLog", _log))
                 .As(typeof(INoSQLTableStorage<PaymentTransactionEventLogEntity>));
+
+            builder.RegisterAssemblyTypes(typeof(IRepository).Assembly)
+                .Where(t => typeof(IRepository).IsAssignableFrom(t))
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
 
             base.Load(builder);
         }

@@ -4,12 +4,11 @@ using Lykke.Contracts.Payments;
 using Lykke.Service.ClientAccount.Client.AutorestClient.Models;
 using Lykke.Service.PaymentSystem.Core.Constants;
 using Lykke.Service.PaymentSystem.Core.Services;
-using Lykke.Service.PaymentSystem.Core.Settings;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings.PaymentSystem;
 
 namespace Lykke.Service.PaymentSystem.Services.Services
 {
-    public class PaymentUrlDataService : IPaymentUrlDataService
+    public class PaymentUrlDataService : IPaymentUrlDataService, IService
     {
         private readonly FxpaygateSettings _fxpaygateSettings;
         private readonly CreditVouchersSettings _creditVouchersSettings;

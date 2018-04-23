@@ -5,7 +5,7 @@ using Lykke.Service.PaymentSystem.Core.Services;
 
 namespace Lykke.Service.PaymentSystem.Services.Services
 {
-    public class PaymentTransactionEventLogService : IPaymentTransactionEventLogService
+    public class PaymentTransactionEventLogService : IPaymentTransactionEventLogService, IService
     {
         private readonly IPaymentTransactionEventsLogRepository _paymentTransactionEventsLogRepository;
 

@@ -9,7 +9,7 @@ using Lykke.Service.PaymentSystem.Core.Repositories;
 
 namespace Lykke.Service.PaymentSystem.AzureRepositories
 {
-    public class PaymentTransactionsRepository: IPaymentTransactionsRepository
+    public class PaymentTransactionsRepository: IPaymentTransactionsRepository, IRepository
     {
         private const string IndexPartitionKey = "IDX";
 

@@ -5,7 +5,7 @@ using Lykke.Service.PaymentSystem.Core.Services;
 
 namespace Lykke.Service.PaymentSystem.Services.Services
 {
-    public class PaymentTransactionsService : IPaymentTransactionsService
+    public class PaymentTransactionsService : IPaymentTransactionsService, IService
     {
         private readonly IPaymentTransactionsRepository _paymentTransactionsRepository;
 

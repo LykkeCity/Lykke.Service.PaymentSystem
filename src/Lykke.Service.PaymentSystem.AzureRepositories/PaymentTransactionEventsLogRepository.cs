@@ -7,7 +7,7 @@ using Lykke.Service.PaymentSystem.Core.Repositories;
 
 namespace Lykke.Service.PaymentSystem.AzureRepositories
 {
-    public class PaymentTransactionEventsLogRepository : IPaymentTransactionEventsLogRepository
+    public class PaymentTransactionEventsLogRepository : IPaymentTransactionEventsLogRepository, IRepository
     {
         private readonly INoSQLTableStorage<PaymentTransactionEventLogEntity> _tableStorage;
 
