@@ -169,7 +169,7 @@ namespace Lykke.Service.PaymentSystem
         {
             var consoleLogger = new LogToConsole();
             var aggregateLogger = new AggregateLogger();
-            return consoleLogger;
+
             aggregateLogger.AddLog(consoleLogger);
 
             var dbLogConnectionStringManager = settings.Nested(x => x.PaymentSystemService.Db.LogsConnString);
