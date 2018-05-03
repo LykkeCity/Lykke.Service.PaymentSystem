@@ -848,22 +848,13 @@
             PaymentSystem extensions
             </summary>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemExtensions.GetInfo(Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse,System.Type,System.Boolean)">
-            <summary>
-            GetInfo as object
-            </summary>
-            <param name="src"></param>
-            <param name="expectedType"></param>
-            <param name="throwExeption"></param>
-            <returns></returns>
-        </member>
         <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemExtensions.GetInfo``1(Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse)">
             <summary>
             GetInfo as T
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="src"></param>
-            <returns></returns>
+            <typeparam name="T">Return type</typeparam>
+            <param name="src">PaymentTransactionResponse object</param>
+            <returns>Deserialize object as T</returns>
         </member>
         <member name="T:Lykke.Service.PaymentSystem.Client.Extensions.PaymentSystemsAndOtherInfo">
             <summary>
