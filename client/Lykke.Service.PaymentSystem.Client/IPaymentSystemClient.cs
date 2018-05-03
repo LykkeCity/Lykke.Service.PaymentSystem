@@ -75,5 +75,11 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns></returns>
         Task InsertPaymentTransactionEventLogAsync(string paymentTransactionId = default(string), string techData = default(string), string message = default(string), string who = default(string), CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Get payment limits
+        /// </summary>
+        /// <returns></returns>
+        Task<PaymentLimitsResponse> GetPaymentLimitsAsync(CancellationToken cancellationToken = default(CancellationToken));
     }
 }

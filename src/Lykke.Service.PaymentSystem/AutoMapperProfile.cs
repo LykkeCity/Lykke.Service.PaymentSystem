@@ -11,6 +11,9 @@ namespace Lykke.Service.PaymentSystem
             CreateMap<IPaymentTransaction, PaymentTransactionResponse>()
                 .ForMember(dest => dest.OtherData, opt => opt.Ignore())
                 ;
+
+            CreateMap<IPaymentLimits, PaymentLimitsResponse>()
+                ;
         }
     }
 }

@@ -161,6 +161,16 @@ namespace Lykke.Service.PaymentSystem.Client
         }
 
         /// <summary>
+        /// Get payment limits
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<PaymentLimitsResponse> GetPaymentLimitsAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await _service.GetPaymentLimitsAsync(cancellationToken);
+        }
+
+        /// <summary>
         /// Dispose
         /// </summary>
         public void Dispose()
