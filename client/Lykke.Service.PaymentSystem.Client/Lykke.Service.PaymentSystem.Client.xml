@@ -843,12 +843,23 @@
             The cancellation token.
             </param>
         </member>
-        <member name="T:Lykke.Service.PaymentSystem.Client.PaymentSystemExtensions">
+        <member name="T:Lykke.Service.PaymentSystem.Client.Extensions.BadPaymentSystemException">
+            <summary>
+            Incorrect CashInPaymentSystem
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.Extensions.BadPaymentSystemException.#ctor(System.String)">
+            <summary>
+            Exception with message
+            </summary>
+            <param name="message">Error message</param>
+        </member>
+        <member name="T:Lykke.Service.PaymentSystem.Client.Extensions.PaymentSystemExtensions">
             <summary>
             PaymentSystem extensions
             </summary>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemExtensions.GetInfo``1(Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.Extensions.PaymentSystemExtensions.GetInfo``1(Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse)">
             <summary>
             GetInfo as T
             </summary>
@@ -938,12 +949,11 @@
             PaymentSystemClient
             </summary>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.#ctor(System.String,Common.Log.ILog)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.#ctor(System.String)">
             <summary>
             Constructor
             </summary>
-            <param name="serviceUrl"></param>
-            <param name="log"></param>
+            <param name="serviceUrl">Service URL</param>
         </member>
         <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.GetUrlDataAsync(System.String,System.String,System.String,System.Double,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
@@ -1012,6 +1022,12 @@
             <summary>
             Dispose
             </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.Dispose(System.Boolean)">
+            <summary>
+            Inner dispose
+            </summary>
+            <param name="disposing">disposing flag</param>
         </member>
     </members>
 </doc>

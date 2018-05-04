@@ -18,14 +18,14 @@ namespace Lykke.Service.PaymentSystem.Client.Extensions
         {
             if (!PaymentSystemsAndOtherInfo.PsAndOtherInfoLinks.ContainsKey(src.PaymentSystem))
             {
-                throw new Exception("Unsupported payment system for reading other info: transactionId:" + src.Id);
+                throw new BadPaymentSystemException("Unsupported payment system for reading other info: transactionId:" + src.Id);
             }
 
             var type = PaymentSystemsAndOtherInfo.PsAndOtherInfoLinks[src.PaymentSystem];
 
             if (type != typeof(T))
             {
-                throw new Exception("Payment system and Other info does not match for transactionId:" + src.Id);
+                throw new BadPaymentSystemException("Payment system and Other info does not match for transactionId:" + src.Id);
             }
 
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(src.Info);

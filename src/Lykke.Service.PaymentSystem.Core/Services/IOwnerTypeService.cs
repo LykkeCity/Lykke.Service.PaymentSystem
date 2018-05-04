@@ -5,6 +5,6 @@ namespace Lykke.Service.PaymentSystem.Core.Services
 {
     public interface IOwnerTypeService
     {
-        Task<OwnerType> GetOwnerTypeAsync(string ownerType);
+        Task<OwnerType> GetOwnerTypeAsync(string walletId);
     }
 }

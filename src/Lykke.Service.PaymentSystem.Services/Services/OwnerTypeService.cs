@@ -20,11 +20,11 @@ namespace Lykke.Service.PaymentSystem.Services.Services
             var wallet = await _clientAccountClient.GetWalletAsync(walletId);
 
             if (wallet == null)
-                throw new Exception($"Wallet with ID {walletId} was not found");
+                throw new ArgumentException($"Wallet with ID {walletId} was not found");
 
             if (!Enum.TryParse(wallet.Owner, out OwnerType owner))
             {
-                throw new Exception($"Owner {walletId} is not supported");
+                throw new ArgumentException($"Owner {walletId} is not supported");
             }
 
             return owner;

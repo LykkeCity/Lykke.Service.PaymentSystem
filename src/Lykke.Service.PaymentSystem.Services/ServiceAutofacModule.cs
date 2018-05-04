@@ -5,7 +5,6 @@ using AzureStorage.Tables.Templates.Index;
 using Common.Log;
 using Lykke.Service.PaymentSystem.AzureRepositories;
 using Lykke.Service.PaymentSystem.AzureRepositories.Entities;
-using Lykke.Service.PaymentSystem.Core.Repositories;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings;
 using Lykke.SettingsReader;
 

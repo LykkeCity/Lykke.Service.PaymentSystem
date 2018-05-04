@@ -1,5 +1,4 @@
 ﻿using Lykke.Service.PaymentSystem.Core.Domain;
-using Lykke.Service.PaymentSystem.Services.Domain;
 
 namespace Lykke.Service.PaymentSystem.Models
 {

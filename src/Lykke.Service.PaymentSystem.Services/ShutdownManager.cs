@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common;
-using Common.Log;
 using Lykke.Service.PaymentSystem.Core.Services;
 
 namespace Lykke.Service.PaymentSystem.Services
@@ -13,22 +12,15 @@ namespace Lykke.Service.PaymentSystem.Services
     
     public class ShutdownManager : IShutdownManager
     {
-        private readonly ILog _log;
         private readonly List<IStopable> _items = new List<IStopable>();
 
-        public ShutdownManager(ILog log)
+        public void Register(IStopable stoppable)
         {
-            _log = log;
-        }
-
-        public void Register(IStopable stopable)
-        {
-            _items.Add(stopable);
+            _items.Add(stoppable);
         }
 
         public async Task StopAsync()
         {
-            // TODO: Implement your shutdown logic here. Good idea is to log every step
             foreach (var item in _items)
             {
                 item.Stop();

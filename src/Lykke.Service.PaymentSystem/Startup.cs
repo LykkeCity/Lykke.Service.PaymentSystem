@@ -10,7 +10,6 @@ using Lykke.Common.ApiLibrary.Swagger;
 using Lykke.Logs;
 using Lykke.Service.PaymentSystem.Core.Services;
 using Lykke.Service.PaymentSystem.Core.Settings;
-using Lykke.Service.PaymentSystem.Modules;
 using Lykke.SettingsReader;
 using Lykke.SlackNotification.AzureQueue;
 using Microsoft.AspNetCore.Builder;
@@ -22,6 +21,9 @@ namespace Lykke.Service.PaymentSystem
 {
     public class Startup
     {
+        public string ApiVersion => "1.0";
+        public string ApiTitle => "Lykke Exchange Operations Service";
+
         public IHostingEnvironment Environment { get; }
         public IContainer ApplicationContainer { get; private set; }
         public IConfigurationRoot Configuration { get; }
@@ -91,7 +93,7 @@ namespace Lykke.Service.PaymentSystem
                 app.UseSwaggerUI(x =>
                 {
                     x.RoutePrefix = "swagger/ui";
-                    x.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                    x.SwaggerEndpoint($"/swagger/{ApiVersion}/swagger.json", $"{ApiTitle} {ApiVersion}");
                 });
                 app.UseStaticFiles();
 
