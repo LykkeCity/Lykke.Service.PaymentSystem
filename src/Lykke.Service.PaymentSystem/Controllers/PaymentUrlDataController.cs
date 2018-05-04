@@ -110,7 +110,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
             {
                 PaymentTransactionId = transactionId,
                 Message = "Payment Url has created",
-                DateTime = DateTime.Now,
+                DateTime = DateTime.UtcNow,
                 TechData = urlData.PaymentUrl,
                 Who = model.ClientId
             });
@@ -138,6 +138,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
                     AssetId = model.AssetId,
                     DepositedAssetId = model.AssetId,
                     WalletId = model.WalletId,
+                    Created = DateTime.UtcNow,
                     Info = info
                 });
 
@@ -145,7 +146,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
             {
                 PaymentTransactionId = transactionId,
                 Message = "Registered",
-                DateTime = DateTime.Now,
+                DateTime = DateTime.UtcNow,
                 TechData = string.Empty,
                 Who = model.ClientId
             });
