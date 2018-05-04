@@ -49,8 +49,6 @@ namespace Lykke.Service.PaymentSystem.Modules
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
 
-            // TODO: Add your dependencies here
-
             builder.RegisterInstance(_settings.CurrentValue.PaymentSettings);
 
             IServiceCollection services = new ServiceCollection();

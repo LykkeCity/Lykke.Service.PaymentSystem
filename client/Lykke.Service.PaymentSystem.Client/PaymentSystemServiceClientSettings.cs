@@ -1,6 +1,4 @@
-using System;
-
-namespace Lykke.Service.PaymentSystem.Client 
+﻿namespace Lykke.Service.PaymentSystem.Client 
 {
     public class PaymentSystemServiceClientSettings 
     {

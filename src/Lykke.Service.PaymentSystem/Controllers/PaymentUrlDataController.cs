@@ -56,7 +56,9 @@ namespace Lykke.Service.PaymentSystem.Controllers
             }
 
             if (!_paymentUrlDataService.IsPaymentSystemSupported(paymentSystem, assetId))
-                throw new Exception($"Asset {assetId} is not supported by {paymentSystem} payment system.");
+            {
+                return BadRequest( new { message = $"Asset {assetId} is not supported by {paymentSystem} payment system." });
+            }
 
             GetUrlDataResult urlData;
             using (var paymentGatewayService = new PaymentGatewayServiceClient(serviceUrl))

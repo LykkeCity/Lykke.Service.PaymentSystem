@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Log;
@@ -13,21 +12,18 @@ namespace Lykke.Service.PaymentSystem.Client
     /// </summary>
     public class PaymentSystemClient : IPaymentSystemClient, IDisposable
     {
-        private readonly ILog _log;
         private PaymentSystemAPI _service;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="serviceUrl"></param>
-        /// <param name="log"></param>
-        public PaymentSystemClient(string serviceUrl, ILog log)
+        /// <param name="serviceUrl">Service URL</param>
+        public PaymentSystemClient(string serviceUrl)
         {
             if (string.IsNullOrWhiteSpace(serviceUrl))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(serviceUrl));
 
             _service = new PaymentSystemAPI(new Uri(serviceUrl));
-            _log = log;
         }
 
         /// <summary>
@@ -87,26 +83,26 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns></returns>
         public async Task InsertPaymentTransactionAsync(
-            double amount, 
-            PaymentStatus status, 
-            CashInPaymentSystem paymentSystem, 
-            double feeAmount, 
-            string id = default(string), 
-            string clientId = default(string), 
-            string assetId = default(string), 
-            string depositedAssetId = default(string), 
-            string walletId = default(string), 
-            string info = default(string), 
-            double? depositedAmount = default(double?), 
-            double? rate = default(double?), 
-            string aggregatorTransactionId = default(string), 
-            string otherData = default(string), 
-            string meTransactionId = default(string), 
+            double amount,
+            PaymentStatus status,
+            CashInPaymentSystem paymentSystem,
+            double feeAmount,
+            string id = default(string),
+            string clientId = default(string),
+            string assetId = default(string),
+            string depositedAssetId = default(string),
+            string walletId = default(string),
+            string info = default(string),
+            double? depositedAmount = default(double?),
+            double? rate = default(double?),
+            string aggregatorTransactionId = default(string),
+            string otherData = default(string),
+            string meTransactionId = default(string),
             CancellationToken cancellationToken = default(CancellationToken))
         {
             await _service.PostPaymentTransactionAsync(
                 amount,
-                DateTime.UtcNow, 
+                DateTime.UtcNow,
                 (PaymentStatus)Enum.Parse(typeof(PaymentStatus), status.ToString()),
                 (CashInPaymentSystem)Enum.Parse(typeof(CashInPaymentSystem), paymentSystem.ToString()),
                 feeAmount,
@@ -175,10 +171,21 @@ namespace Lykke.Service.PaymentSystem.Client
         /// </summary>
         public void Dispose()
         {
-            if (_service == null)
-                return;
-            _service.Dispose();
-            _service = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Inner dispose
+        /// </summary>
+        /// <param name="disposing">disposing flag</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _service != null)
+            {
+                _service.Dispose();
+                _service = null;
+            }
         }
     }
 }

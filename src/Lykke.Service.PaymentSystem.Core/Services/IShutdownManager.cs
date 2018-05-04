@@ -7,6 +7,6 @@ namespace Lykke.Service.PaymentSystem.Core.Services
     {
         Task StopAsync();
 
-        void Register(IStopable stopable);
+        void Register(IStopable stoppable);
     }
 }

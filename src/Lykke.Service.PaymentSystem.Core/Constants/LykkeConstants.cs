@@ -1,6 +1,6 @@
 ﻿namespace Lykke.Service.PaymentSystem.Core.Constants
 {
-    public class LykkeConstants
+    public static class LykkeConstants
     {
         public const string UsdAssetId = "USD";
     }

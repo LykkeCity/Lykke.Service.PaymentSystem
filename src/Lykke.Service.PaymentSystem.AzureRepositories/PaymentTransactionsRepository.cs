@@ -24,17 +24,17 @@ namespace Lykke.Service.PaymentSystem.AzureRepositories
             _tableStorageIndices = tableStorageIndices;
         }
 
-        public async Task InsertAsync(IPaymentTransaction model)
+        public async Task InsertAsync(IPaymentTransaction paymentTransaction)
         {
-            var commonEntity = Mapper.Map<PaymentTransactionEntity>(model);
+            var commonEntity = Mapper.Map<PaymentTransactionEntity>(paymentTransaction);
             commonEntity.PartitionKey = PaymentTransactionEntity.GeneratePartitionKey();
-            await _tableStorage.InsertAndGenerateRowKeyAsDateTimeAsync(commonEntity, model.Created);
+            await _tableStorage.InsertAndGenerateRowKeyAsDateTimeAsync(commonEntity, paymentTransaction.Created);
 
-            var entityByClient = Mapper.Map<PaymentTransactionEntity>(model);
-            entityByClient.PartitionKey = PaymentTransactionEntity.GeneratePartitionKey(model.ClientId);
-            entityByClient.RowKey = PaymentTransactionEntity.GenerateRowKey(model.Id);
+            var entityByClient = Mapper.Map<PaymentTransactionEntity>(paymentTransaction);
+            entityByClient.PartitionKey = PaymentTransactionEntity.GeneratePartitionKey(paymentTransaction.ClientId);
+            entityByClient.RowKey = PaymentTransactionEntity.GenerateRowKey(paymentTransaction.Id);
 
-            var index = AzureMultiIndex.Create(IndexPartitionKey, model.Id, commonEntity, entityByClient);
+            var index = AzureMultiIndex.Create(IndexPartitionKey, paymentTransaction.Id, commonEntity, entityByClient);
 
             await Task.WhenAll(
                 _tableStorage.InsertAsync(entityByClient),
