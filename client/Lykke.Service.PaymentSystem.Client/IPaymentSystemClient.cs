@@ -27,7 +27,6 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <param name="depositOption">Deposit option</param>
         /// <param name="okUrl">OkUrl</param>
         /// <param name="failUrl">FailUrl</param>
-        /// <param name="depositOptionEnum">DepositOptionEnum</param>
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns>Url fot payment</returns>
         Task<PaymentUrlDataResponse> GetUrlDataAsync(
@@ -43,10 +42,9 @@ namespace Lykke.Service.PaymentSystem.Client
             string country,
             string email,
             string phone,
-            string depositOption,
+            DepositOption depositOption,
             string okUrl,
             string failUrl,
-            DepositOption depositOptionEnum,
             CancellationToken cancellationToken = default(CancellationToken));
 
 

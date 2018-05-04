@@ -550,13 +550,11 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// <param name='phone'>
         /// </param>
         /// <param name='depositOption'>
+        /// Possible values include: 'Unknown', 'BankCard', 'Other'
         /// </param>
         /// <param name='okUrl'>
         /// </param>
         /// <param name='failUrl'>
-        /// </param>
-        /// <param name='depositOptionEnum'>
-        /// Possible values include: 'Unknown', 'BankCard', 'Other'
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -573,7 +571,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string depositOption = default(string), string okUrl = default(string), string failUrl = default(string), DepositOption? depositOptionEnum = default(DepositOption?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), DepositOption? depositOption = default(DepositOption?), string okUrl = default(string), string failUrl = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -597,7 +595,6 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
                 tracingParameters.Add("depositOption", depositOption);
                 tracingParameters.Add("okUrl", okUrl);
                 tracingParameters.Add("failUrl", failUrl);
-                tracingParameters.Add("depositOptionEnum", depositOptionEnum);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "PostPaymentUrlData", tracingParameters);
             }
@@ -655,7 +652,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             }
             if (depositOption != null)
             {
-                _queryParameters.Add(string.Format("DepositOption={0}", System.Uri.EscapeDataString(depositOption)));
+                _queryParameters.Add(string.Format("DepositOption={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(depositOption, SerializationSettings).Trim('"'))));
             }
             if (okUrl != null)
             {
@@ -664,10 +661,6 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             if (failUrl != null)
             {
                 _queryParameters.Add(string.Format("FailUrl={0}", System.Uri.EscapeDataString(failUrl)));
-            }
-            if (depositOptionEnum != null)
-            {
-                _queryParameters.Add(string.Format("DepositOptionEnum={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(depositOptionEnum, SerializationSettings).Trim('"'))));
             }
             if (_queryParameters.Count > 0)
             {

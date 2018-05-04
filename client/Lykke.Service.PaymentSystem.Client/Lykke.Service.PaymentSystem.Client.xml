@@ -52,7 +52,7 @@
             The cancellation token.
             </param>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI.PostPaymentUrlDataWithHttpMessagesAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI.PostPaymentUrlDataWithHttpMessagesAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption},System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
             <param name='clientId'>
             </param>
             <param name='amount'>
@@ -78,13 +78,11 @@
             <param name='phone'>
             </param>
             <param name='depositOption'>
+            Possible values include: 'Unknown', 'BankCard', 'Other'
             </param>
             <param name='okUrl'>
             </param>
             <param name='failUrl'>
-            </param>
-            <param name='depositOptionEnum'>
-            Possible values include: 'Unknown', 'BankCard', 'Other'
             </param>
             <param name='customHeaders'>
             The headers that will be added to request.
@@ -430,7 +428,7 @@
             A response object containing the response body and response headers.
             </return>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.PostPaymentUrlDataWithHttpMessagesAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.PostPaymentUrlDataWithHttpMessagesAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption},System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
             <param name='clientId'>
             </param>
             <param name='amount'>
@@ -456,13 +454,11 @@
             <param name='phone'>
             </param>
             <param name='depositOption'>
+            Possible values include: 'Unknown', 'BankCard', 'Other'
             </param>
             <param name='okUrl'>
             </param>
             <param name='failUrl'>
-            </param>
-            <param name='depositOptionEnum'>
-            Possible values include: 'Unknown', 'BankCard', 'Other'
             </param>
             <param name='customHeaders'>
             Headers that will be added to request.
@@ -534,7 +530,7 @@
             The cancellation token.
             </param>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.PostPaymentUrlData(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption})">
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.PostPaymentUrlData(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption},System.String,System.String)">
             <param name='operations'>
             The operations group for this extension method.
             </param>
@@ -563,16 +559,14 @@
             <param name='phone'>
             </param>
             <param name='depositOption'>
+            Possible values include: 'Unknown', 'BankCard', 'Other'
             </param>
             <param name='okUrl'>
             </param>
             <param name='failUrl'>
-            </param>
-            <param name='depositOptionEnum'>
-            Possible values include: 'Unknown', 'BankCard', 'Other'
             </param>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.PostPaymentUrlDataAsync(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption},System.Threading.CancellationToken)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.PostPaymentUrlDataAsync(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption},System.String,System.String,System.Threading.CancellationToken)">
             <param name='operations'>
             The operations group for this extension method.
             </param>
@@ -601,13 +595,11 @@
             <param name='phone'>
             </param>
             <param name='depositOption'>
+            Possible values include: 'Unknown', 'BankCard', 'Other'
             </param>
             <param name='okUrl'>
             </param>
             <param name='failUrl'>
-            </param>
-            <param name='depositOptionEnum'>
-            Possible values include: 'Unknown', 'BankCard', 'Other'
             </param>
             <param name='cancellationToken'>
             The cancellation token.
@@ -618,7 +610,7 @@
             PaymentSystemClient
             </summary>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.GetUrlDataAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption,System.Threading.CancellationToken)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.GetUrlDataAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Get urls for payment
             </summary>
@@ -637,7 +629,6 @@
             <param name="depositOption">Deposit option</param>
             <param name="okUrl">OkUrl</param>
             <param name="failUrl">FailUrl</param>
-            <param name="depositOptionEnum">DepositOptionEnum</param>
             <param name="cancellationToken">CancellationToken</param>
             <returns>Url fot payment</returns>
         </member>
@@ -666,7 +657,7 @@
             </summary>
             <param name="serviceUrl">Service URL</param>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.GetUrlDataAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption,System.Threading.CancellationToken)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.GetUrlDataAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Get urls for payment
             </summary>
