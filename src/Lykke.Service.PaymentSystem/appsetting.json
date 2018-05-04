@@ -1,0 +1,71 @@
+{
+  "PaymentSystemService": {
+    "ClientAccountServiceClient": {
+      "ServiceUrl": "http://client-account.lykke-service.svc.cluster.local"
+    },
+    "Db": {
+      "ClientPersonalInfoConnString": "DefaultEndpointsProtocol=https;AccountName=lkedevmain;AccountKey=l0W0CaoNiRZQIqJ536sIScSV5fUuQmPYRQYohj/UjO7+ZVdpUiEsRLtQMxD+1szNuAeJ351ndkOsdWFzWBXmdw==",
+      "LogsConnString": "DefaultEndpointsProtocol=https;AccountName=lkedevlogs;AccountKey=mhOA//Lv9BvDyIBFqDRNsdSa+hgr2Mix+9dCOAnJUT3EHx0fQrl7itHrEsOcosCcovWNNSw+r5+lYfQ8+H9V4A=="
+    },
+    "PaymentSettings": {
+      "LegalEntity": "LYKKEVU",
+      "CreditVouchers": {
+        "MinAmount": 8,
+        "MaxAmount": 3000,
+        "ServiceUrls": [
+          "https://payments-creditvouchers-dev.lykkex.net"
+        ],
+        "SupportedCurrencies": [
+          "USD",
+          "EUR",
+          "GBP",
+          "QNT"
+        ]
+      },
+      "Fxpaygate": {
+        "Currencies": [
+          "USD",
+          "GBP"
+        ],
+        "Countries": [
+          "VUT"
+        ],
+        "ServiceUrls": {
+          "Spot": "http://payments-fxpaygate.lykke-service.svc.cluster.local",
+          "Mt_LYKKEVU": "http://payments-fxpaygate-vu.lykke-service.svc.cluster.local",
+          "Mt_LYKKECY": "http://payments-fxpaygate-cy.lykke-service.svc.cluster.local"
+        },
+        "SupportedCurrencies": [
+          "USD",
+          "EUR",
+          "GBP"
+        ]
+      }
+    },
+    "MarginSettings": {
+      "DataReaderLiveApiUrl": "http://mt-data-reader-live.lykke-mt.svc.cluster.local",
+      "DataReaderLiveApiKey": "margintrading",
+      "DataReaderDemoApiUrl": "http://mt-data-reader-demo.lykke-mt.svc.cluster.local",
+      "DataReaderDemoApiKey": "margintrading"
+    },
+    "AssetsServices": {
+      "ServiceUrl": "http://assets.lykke-service.svc.cluster.local"
+    },
+    "FeeCalculatorServiceClient": {
+      "ServiceUrl": "http://fee-calculator.lykke-service.svc.cluster.local"
+    },
+    "PersonalDataServiceSettings": {
+      "ServiceUri": "http://personal-data.lykke-service.svc.cluster.local",
+      "ApiKey": "key"
+    }
+  },
+    "SlackNotifications": 
+    {
+      "AzureQueue": 
+      {
+        "ConnectionString": "DefaultEndpointsProtocol=https;AccountName=lkedevshared;AccountKey=deMBXlOj0telRE7poKY+2P9MwPcSsOJ+1IUqG6xoQ3kdDAMhxzvh22zKAXnlaKyPeF0gpbzgK4k7M9ZLdlTx+w==",
+        "QueueName": "slack-notifications"
+      },
+      "ThrottlingLimitSeconds": 60
+    }
+  }

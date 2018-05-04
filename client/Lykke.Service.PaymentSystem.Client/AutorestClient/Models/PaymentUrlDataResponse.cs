@@ -22,18 +22,11 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// <summary>
         /// Initializes a new instance of the PaymentUrlDataResponse class.
         /// </summary>
-        /// <param name="paymentSystem">Possible values include: 'Unknown',
-        /// 'CreditVoucher', 'Bitcoin', 'Ethereum', 'Swift', 'SolarCoin',
-        /// 'ChronoBank', 'Fxpaygate', 'Quanta'</param>
-        public PaymentUrlDataResponse(CashInPaymentSystem paymentSystem, string paymentUrl = default(string), string okUrl = default(string), string failUrl = default(string), string reloadRegexp = default(string), string urlsRegexp = default(string), string errorMessage = default(string))
+        public PaymentUrlDataResponse(string url = default(string), string okUrl = default(string), string failUrl = default(string))
         {
-            PaymentUrl = paymentUrl;
+            Url = url;
             OkUrl = okUrl;
             FailUrl = failUrl;
-            ReloadRegexp = reloadRegexp;
-            UrlsRegexp = urlsRegexp;
-            ErrorMessage = errorMessage;
-            PaymentSystem = paymentSystem;
             CustomInit();
         }
 
@@ -44,8 +37,8 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "PaymentUrl")]
-        public string PaymentUrl { get; set; }
+        [JsonProperty(PropertyName = "Url")]
+        public string Url { get; set; }
 
         /// <summary>
         /// </summary>
@@ -57,37 +50,5 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         [JsonProperty(PropertyName = "FailUrl")]
         public string FailUrl { get; set; }
 
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "ReloadRegexp")]
-        public string ReloadRegexp { get; set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "UrlsRegexp")]
-        public string UrlsRegexp { get; set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "ErrorMessage")]
-        public string ErrorMessage { get; set; }
-
-        /// <summary>
-        /// Gets or sets possible values include: 'Unknown', 'CreditVoucher',
-        /// 'Bitcoin', 'Ethereum', 'Swift', 'SolarCoin', 'ChronoBank',
-        /// 'Fxpaygate', 'Quanta'
-        /// </summary>
-        [JsonProperty(PropertyName = "PaymentSystem")]
-        public CashInPaymentSystem PaymentSystem { get; set; }
-
-        /// <summary>
-        /// Validate the object.
-        /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
-        /// Thrown if validation fails
-        /// </exception>
-        public virtual void Validate()
-        {
-        }
     }
 }

@@ -525,356 +525,36 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             return _result;
         }
 
-        /// <param name='amount'>
-        /// </param>
-        /// <param name='created'>
-        /// </param>
-        /// <param name='status'>
-        /// Possible values include: 'Created', 'NotifyProcessed', 'NotifyDeclined',
-        /// 'Processing'
-        /// </param>
-        /// <param name='paymentSystem'>
-        /// Possible values include: 'Unknown', 'CreditVoucher', 'Bitcoin', 'Ethereum',
-        /// 'Swift', 'SolarCoin', 'ChronoBank', 'Fxpaygate', 'Quanta'
-        /// </param>
-        /// <param name='feeAmount'>
-        /// </param>
-        /// <param name='id'>
-        /// </param>
         /// <param name='clientId'>
+        /// </param>
+        /// <param name='amount'>
         /// </param>
         /// <param name='assetId'>
         /// </param>
         /// <param name='walletId'>
         /// </param>
-        /// <param name='depositedAmount'>
+        /// <param name='firstName'>
         /// </param>
-        /// <param name='depositedAssetId'>
+        /// <param name='lastName'>
         /// </param>
-        /// <param name='rate'>
+        /// <param name='city'>
         /// </param>
-        /// <param name='aggregatorTransactionId'>
+        /// <param name='zip'>
         /// </param>
-        /// <param name='info'>
+        /// <param name='address'>
         /// </param>
-        /// <param name='otherData'>
+        /// <param name='country'>
         /// </param>
-        /// <param name='meTransactionId'>
+        /// <param name='email'>
         /// </param>
-        /// <param name='customHeaders'>
-        /// Headers that will be added to request.
+        /// <param name='phone'>
         /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
+        /// <param name='depositOption'>
+        /// Possible values include: 'Unknown', 'BankCard', 'Other'
         /// </param>
-        /// <exception cref="HttpOperationException">
-        /// Thrown when the operation returned an invalid status code
-        /// </exception>
-        /// <return>
-        /// A response object containing the response body and response headers.
-        /// </return>
-        public async Task<HttpOperationResponse> PostPaymentTransactionWithHttpMessagesAsync(double amount, System.DateTime created, PaymentStatus status, CashInPaymentSystem paymentSystem, double feeAmount, string id = default(string), string clientId = default(string), string assetId = default(string), string walletId = default(string), double? depositedAmount = default(double?), string depositedAssetId = default(string), double? rate = default(double?), string aggregatorTransactionId = default(string), string info = default(string), string otherData = default(string), string meTransactionId = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            // Tracing
-            bool _shouldTrace = ServiceClientTracing.IsEnabled;
-            string _invocationId = null;
-            if (_shouldTrace)
-            {
-                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
-                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("id", id);
-                tracingParameters.Add("clientId", clientId);
-                tracingParameters.Add("amount", amount);
-                tracingParameters.Add("assetId", assetId);
-                tracingParameters.Add("walletId", walletId);
-                tracingParameters.Add("depositedAmount", depositedAmount);
-                tracingParameters.Add("depositedAssetId", depositedAssetId);
-                tracingParameters.Add("rate", rate);
-                tracingParameters.Add("aggregatorTransactionId", aggregatorTransactionId);
-                tracingParameters.Add("created", created);
-                tracingParameters.Add("status", status);
-                tracingParameters.Add("paymentSystem", paymentSystem);
-                tracingParameters.Add("info", info);
-                tracingParameters.Add("otherData", otherData);
-                tracingParameters.Add("feeAmount", feeAmount);
-                tracingParameters.Add("meTransactionId", meTransactionId);
-                tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "PostPaymentTransaction", tracingParameters);
-            }
-            // Construct URL
-            var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/PaymentTransaction").ToString();
-            List<string> _queryParameters = new List<string>();
-            if (id != null)
-            {
-                _queryParameters.Add(string.Format("Id={0}", System.Uri.EscapeDataString(id)));
-            }
-            if (clientId != null)
-            {
-                _queryParameters.Add(string.Format("ClientId={0}", System.Uri.EscapeDataString(clientId)));
-            }
-            _queryParameters.Add(string.Format("Amount={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(amount, SerializationSettings).Trim('"'))));
-            if (assetId != null)
-            {
-                _queryParameters.Add(string.Format("AssetId={0}", System.Uri.EscapeDataString(assetId)));
-            }
-            if (walletId != null)
-            {
-                _queryParameters.Add(string.Format("WalletId={0}", System.Uri.EscapeDataString(walletId)));
-            }
-            if (depositedAmount != null)
-            {
-                _queryParameters.Add(string.Format("DepositedAmount={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(depositedAmount, SerializationSettings).Trim('"'))));
-            }
-            if (depositedAssetId != null)
-            {
-                _queryParameters.Add(string.Format("DepositedAssetId={0}", System.Uri.EscapeDataString(depositedAssetId)));
-            }
-            if (rate != null)
-            {
-                _queryParameters.Add(string.Format("Rate={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(rate, SerializationSettings).Trim('"'))));
-            }
-            if (aggregatorTransactionId != null)
-            {
-                _queryParameters.Add(string.Format("AggregatorTransactionId={0}", System.Uri.EscapeDataString(aggregatorTransactionId)));
-            }
-            _queryParameters.Add(string.Format("Created={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(created, SerializationSettings).Trim('"'))));
-            _queryParameters.Add(string.Format("Status={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(status, SerializationSettings).Trim('"'))));
-            _queryParameters.Add(string.Format("PaymentSystem={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(paymentSystem, SerializationSettings).Trim('"'))));
-            if (info != null)
-            {
-                _queryParameters.Add(string.Format("Info={0}", System.Uri.EscapeDataString(info)));
-            }
-            if (otherData != null)
-            {
-                _queryParameters.Add(string.Format("OtherData={0}", System.Uri.EscapeDataString(otherData)));
-            }
-            _queryParameters.Add(string.Format("FeeAmount={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(feeAmount, SerializationSettings).Trim('"'))));
-            if (meTransactionId != null)
-            {
-                _queryParameters.Add(string.Format("MeTransactionId={0}", System.Uri.EscapeDataString(meTransactionId)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
-            // Create HTTP transport objects
-            var _httpRequest = new HttpRequestMessage();
-            HttpResponseMessage _httpResponse = null;
-            _httpRequest.Method = new HttpMethod("POST");
-            _httpRequest.RequestUri = new System.Uri(_url);
-            // Set Headers
-
-
-            if (customHeaders != null)
-            {
-                foreach(var _header in customHeaders)
-                {
-                    if (_httpRequest.Headers.Contains(_header.Key))
-                    {
-                        _httpRequest.Headers.Remove(_header.Key);
-                    }
-                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
-                }
-            }
-
-            // Serialize Request
-            string _requestContent = null;
-            // Send Request
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
-            }
-            cancellationToken.ThrowIfCancellationRequested();
-            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
-            }
-            HttpStatusCode _statusCode = _httpResponse.StatusCode;
-            cancellationToken.ThrowIfCancellationRequested();
-            string _responseContent = null;
-            if ((int)_statusCode != 204)
-            {
-                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
-                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                }
-                else {
-                    _responseContent = string.Empty;
-                }
-                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
-                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
-                if (_shouldTrace)
-                {
-                    ServiceClientTracing.Error(_invocationId, ex);
-                }
-                _httpRequest.Dispose();
-                if (_httpResponse != null)
-                {
-                    _httpResponse.Dispose();
-                }
-                throw ex;
-            }
-            // Create Result
-            var _result = new HttpOperationResponse();
-            _result.Request = _httpRequest;
-            _result.Response = _httpResponse;
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.Exit(_invocationId, _result);
-            }
-            return _result;
-        }
-
-        /// <param name='dateTime'>
+        /// <param name='okUrl'>
         /// </param>
-        /// <param name='paymentTransactionId'>
-        /// </param>
-        /// <param name='techData'>
-        /// </param>
-        /// <param name='message'>
-        /// </param>
-        /// <param name='who'>
-        /// </param>
-        /// <param name='customHeaders'>
-        /// Headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        /// <exception cref="HttpOperationException">
-        /// Thrown when the operation returned an invalid status code
-        /// </exception>
-        /// <return>
-        /// A response object containing the response body and response headers.
-        /// </return>
-        public async Task<HttpOperationResponse> PostPaymentTransactionEventsLogWithHttpMessagesAsync(System.DateTime dateTime, string paymentTransactionId = default(string), string techData = default(string), string message = default(string), string who = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            // Tracing
-            bool _shouldTrace = ServiceClientTracing.IsEnabled;
-            string _invocationId = null;
-            if (_shouldTrace)
-            {
-                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
-                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("paymentTransactionId", paymentTransactionId);
-                tracingParameters.Add("dateTime", dateTime);
-                tracingParameters.Add("techData", techData);
-                tracingParameters.Add("message", message);
-                tracingParameters.Add("who", who);
-                tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "PostPaymentTransactionEventsLog", tracingParameters);
-            }
-            // Construct URL
-            var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/PaymentTransactionEventsLog").ToString();
-            List<string> _queryParameters = new List<string>();
-            if (paymentTransactionId != null)
-            {
-                _queryParameters.Add(string.Format("PaymentTransactionId={0}", System.Uri.EscapeDataString(paymentTransactionId)));
-            }
-            _queryParameters.Add(string.Format("DateTime={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(dateTime, SerializationSettings).Trim('"'))));
-            if (techData != null)
-            {
-                _queryParameters.Add(string.Format("TechData={0}", System.Uri.EscapeDataString(techData)));
-            }
-            if (message != null)
-            {
-                _queryParameters.Add(string.Format("Message={0}", System.Uri.EscapeDataString(message)));
-            }
-            if (who != null)
-            {
-                _queryParameters.Add(string.Format("Who={0}", System.Uri.EscapeDataString(who)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
-            // Create HTTP transport objects
-            var _httpRequest = new HttpRequestMessage();
-            HttpResponseMessage _httpResponse = null;
-            _httpRequest.Method = new HttpMethod("POST");
-            _httpRequest.RequestUri = new System.Uri(_url);
-            // Set Headers
-
-
-            if (customHeaders != null)
-            {
-                foreach(var _header in customHeaders)
-                {
-                    if (_httpRequest.Headers.Contains(_header.Key))
-                    {
-                        _httpRequest.Headers.Remove(_header.Key);
-                    }
-                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
-                }
-            }
-
-            // Serialize Request
-            string _requestContent = null;
-            // Send Request
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
-            }
-            cancellationToken.ThrowIfCancellationRequested();
-            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
-            }
-            HttpStatusCode _statusCode = _httpResponse.StatusCode;
-            cancellationToken.ThrowIfCancellationRequested();
-            string _responseContent = null;
-            if ((int)_statusCode != 204)
-            {
-                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
-                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                }
-                else {
-                    _responseContent = string.Empty;
-                }
-                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
-                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
-                if (_shouldTrace)
-                {
-                    ServiceClientTracing.Error(_invocationId, ex);
-                }
-                _httpRequest.Dispose();
-                if (_httpResponse != null)
-                {
-                    _httpResponse.Dispose();
-                }
-                throw ex;
-            }
-            // Create Result
-            var _result = new HttpOperationResponse();
-            _result.Request = _httpRequest;
-            _result.Response = _httpResponse;
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.Exit(_invocationId, _result);
-            }
-            return _result;
-        }
-
-        /// <param name='amount'>
-        /// </param>
-        /// <param name='clientPaymentSystem'>
-        /// </param>
-        /// <param name='orderId'>
-        /// </param>
-        /// <param name='clientId'>
-        /// </param>
-        /// <param name='assetId'>
-        /// </param>
-        /// <param name='walletId'>
-        /// </param>
-        /// <param name='isoCountryCode'>
-        /// </param>
-        /// <param name='otherInfoJson'>
+        /// <param name='failUrl'>
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -891,7 +571,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(double amount, string clientPaymentSystem = default(string), string orderId = default(string), string clientId = default(string), string assetId = default(string), string walletId = default(string), string isoCountryCode = default(string), string otherInfoJson = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), DepositOption? depositOption = default(DepositOption?), string okUrl = default(string), string failUrl = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -900,14 +580,21 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("clientPaymentSystem", clientPaymentSystem);
-                tracingParameters.Add("orderId", orderId);
                 tracingParameters.Add("clientId", clientId);
                 tracingParameters.Add("amount", amount);
                 tracingParameters.Add("assetId", assetId);
                 tracingParameters.Add("walletId", walletId);
-                tracingParameters.Add("isoCountryCode", isoCountryCode);
-                tracingParameters.Add("otherInfoJson", otherInfoJson);
+                tracingParameters.Add("firstName", firstName);
+                tracingParameters.Add("lastName", lastName);
+                tracingParameters.Add("city", city);
+                tracingParameters.Add("zip", zip);
+                tracingParameters.Add("address", address);
+                tracingParameters.Add("country", country);
+                tracingParameters.Add("email", email);
+                tracingParameters.Add("phone", phone);
+                tracingParameters.Add("depositOption", depositOption);
+                tracingParameters.Add("okUrl", okUrl);
+                tracingParameters.Add("failUrl", failUrl);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "PostPaymentUrlData", tracingParameters);
             }
@@ -915,19 +602,14 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             var _baseUrl = BaseUri.AbsoluteUri;
             var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/PaymentUrlData").ToString();
             List<string> _queryParameters = new List<string>();
-            if (clientPaymentSystem != null)
-            {
-                _queryParameters.Add(string.Format("ClientPaymentSystem={0}", System.Uri.EscapeDataString(clientPaymentSystem)));
-            }
-            if (orderId != null)
-            {
-                _queryParameters.Add(string.Format("OrderId={0}", System.Uri.EscapeDataString(orderId)));
-            }
             if (clientId != null)
             {
                 _queryParameters.Add(string.Format("ClientId={0}", System.Uri.EscapeDataString(clientId)));
             }
-            _queryParameters.Add(string.Format("Amount={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(amount, SerializationSettings).Trim('"'))));
+            if (amount != null)
+            {
+                _queryParameters.Add(string.Format("Amount={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(amount, SerializationSettings).Trim('"'))));
+            }
             if (assetId != null)
             {
                 _queryParameters.Add(string.Format("AssetId={0}", System.Uri.EscapeDataString(assetId)));
@@ -936,13 +618,49 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             {
                 _queryParameters.Add(string.Format("WalletId={0}", System.Uri.EscapeDataString(walletId)));
             }
-            if (isoCountryCode != null)
+            if (firstName != null)
             {
-                _queryParameters.Add(string.Format("IsoCountryCode={0}", System.Uri.EscapeDataString(isoCountryCode)));
+                _queryParameters.Add(string.Format("FirstName={0}", System.Uri.EscapeDataString(firstName)));
             }
-            if (otherInfoJson != null)
+            if (lastName != null)
             {
-                _queryParameters.Add(string.Format("OtherInfoJson={0}", System.Uri.EscapeDataString(otherInfoJson)));
+                _queryParameters.Add(string.Format("LastName={0}", System.Uri.EscapeDataString(lastName)));
+            }
+            if (city != null)
+            {
+                _queryParameters.Add(string.Format("City={0}", System.Uri.EscapeDataString(city)));
+            }
+            if (zip != null)
+            {
+                _queryParameters.Add(string.Format("Zip={0}", System.Uri.EscapeDataString(zip)));
+            }
+            if (address != null)
+            {
+                _queryParameters.Add(string.Format("Address={0}", System.Uri.EscapeDataString(address)));
+            }
+            if (country != null)
+            {
+                _queryParameters.Add(string.Format("Country={0}", System.Uri.EscapeDataString(country)));
+            }
+            if (email != null)
+            {
+                _queryParameters.Add(string.Format("Email={0}", System.Uri.EscapeDataString(email)));
+            }
+            if (phone != null)
+            {
+                _queryParameters.Add(string.Format("Phone={0}", System.Uri.EscapeDataString(phone)));
+            }
+            if (depositOption != null)
+            {
+                _queryParameters.Add(string.Format("DepositOption={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(depositOption, SerializationSettings).Trim('"'))));
+            }
+            if (okUrl != null)
+            {
+                _queryParameters.Add(string.Format("OkUrl={0}", System.Uri.EscapeDataString(okUrl)));
+            }
+            if (failUrl != null)
+            {
+                _queryParameters.Add(string.Format("FailUrl={0}", System.Uri.EscapeDataString(failUrl)));
             }
             if (_queryParameters.Count > 0)
             {

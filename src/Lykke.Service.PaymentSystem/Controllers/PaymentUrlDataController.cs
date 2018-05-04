@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using Common;
+using Common.Log;
 using Lykke.Contracts.Payments;
-using Lykke.Payments.Client;
-using Lykke.Payments.Contracts;
+using Lykke.Service.Assets.Client;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using Lykke.Service.ClientAccount.Client.AutorestClient.Models;
+using Lykke.Service.FeeCalculator.Client;
+using Lykke.Service.PaymentSystem.Core.Constants;
+using Lykke.Service.PaymentSystem.Core.Enums;
 using Lykke.Service.PaymentSystem.Core.Services;
 using Lykke.Service.PaymentSystem.Models;
+using Lykke.Service.PersonalData.Contract;
 
 namespace Lykke.Service.PaymentSystem.Controllers
 {
@@ -16,17 +20,30 @@ namespace Lykke.Service.PaymentSystem.Controllers
     public class PaymentUrlDataController : Controller
     {
         private readonly IPaymentUrlDataService _paymentUrlDataService;
-        private readonly IOwnerTypeService _ownerTypeService;
-        private readonly ILegalEntityService _legalEntityService;
+        private readonly IPaymentTransactionEventLogService _paymentTransactionEventLogService;
+        private readonly IPaymentTransactionsService _paymentTransactionsService;
+
+        private readonly IAssetsService _assetsService;
+        private readonly IFeeCalculatorClient _feeCalculatorClient;
+        private readonly IPersonalDataService _personalDataService;
+        private readonly ILog _log;
 
         public PaymentUrlDataController(
             IPaymentUrlDataService paymentUrlDataService,
-            ILegalEntityService legalEntityService,
-            IOwnerTypeService ownerTypeService)
+            IPaymentTransactionEventLogService paymentTransactionEventLogService,
+            IPaymentTransactionsService paymentTransactionsService,
+            ILog log,
+            IAssetsService assetsService,
+            IFeeCalculatorClient feeCalculatorClient,
+            IPersonalDataService personalDataService)
         {
             _paymentUrlDataService = paymentUrlDataService;
-            _legalEntityService = legalEntityService;
-            _ownerTypeService = ownerTypeService;
+            _paymentTransactionEventLogService = paymentTransactionEventLogService;
+            _paymentTransactionsService = paymentTransactionsService;
+            _log = log;
+            _assetsService = assetsService;
+            _feeCalculatorClient = feeCalculatorClient;
+            _personalDataService = personalDataService;
         }
 
         [HttpPost]
@@ -34,48 +51,118 @@ namespace Lykke.Service.PaymentSystem.Controllers
         [ProducesResponseType(typeof(PaymentUrlDataResponse), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Post(PaymentUrlDataRequest model)
         {
-            var walletId = model.WalletId;
-            var assetId = model.AssetId;
+            if (string.IsNullOrWhiteSpace(model.AssetId))
+                model.AssetId = LykkeConstants.UsdAssetId;
 
-            var paymentSystem = CashInPaymentSystem.CreditVoucher;
-            var serviceUrl = _paymentUrlDataService.SelectCreditVouchersService();
+            var phoneNumberE164 = model.Phone.PreparePhoneNum().ToE164Number();
+            var pd = await _personalDataService.GetAsync(model.ClientId);
 
-            var ownerType = await _ownerTypeService.GetOwnerTypeAsync(walletId);
+            CashInPaymentSystem paymentSystem;
 
-            if (ownerType == OwnerType.Mt)
+            switch (model.DepositOption)
             {
-                var legalEntity = await _legalEntityService.GetLegalEntityAsync(walletId);
-
-                paymentSystem = CashInPaymentSystem.Fxpaygate;
-                serviceUrl = _paymentUrlDataService.SelectFxpaygateService(OwnerType.Mt, legalEntity);
-            }
-            else if (_paymentUrlDataService.IsFxpaygateAndSpot(model.ClientPaymentSystem, assetId, model.IsoCountryCode))
-            {
-                paymentSystem = CashInPaymentSystem.Fxpaygate;
-                serviceUrl = _paymentUrlDataService.SelectFxpaygateService(OwnerType.Spot);
-            }
-
-            if (!_paymentUrlDataService.IsPaymentSystemSupported(paymentSystem, assetId))
-            {
-                return BadRequest( new { message = $"Asset {assetId} is not supported by {paymentSystem} payment system." });
+                case DepositOption.BankCard:
+                    paymentSystem = CashInPaymentSystem.Fxpaygate;
+                    break;
+                case DepositOption.Other:
+                    paymentSystem = CashInPaymentSystem.CreditVoucher;
+                    break;
+                default:
+                    paymentSystem = CashInPaymentSystem.Unknown;
+                    break;
             }
 
-            GetUrlDataResult urlData;
-            using (var paymentGatewayService = new PaymentGatewayServiceClient(serviceUrl))
+            var transactionId = (await _paymentUrlDataService.GenerateNewTransactionIdAsync()).ToString();
+
+            const string formatOfDateOfBirth = "yyyy-MM-dd";
+
+            var info = OtherPaymentInfo.Create(
+                    model.FirstName,
+                    model.LastName,
+                    model.City,
+                    model.Zip,
+                    model.Address,
+                    model.Country,
+                    model.Email,
+                    phoneNumberE164,
+                    pd.DateOfBirth?.ToString(formatOfDateOfBirth),
+                    model.OkUrl,
+                    model.FailUrl)
+                .ToJson();
+
+            var bankCardsFee = await _feeCalculatorClient.GetBankCardFees();
+
+            var asset = await _assetsService.AssetGetAsync(model.AssetId);
+            var feeAmount = Math.Round(model.Amount * bankCardsFee.Percentage, 15);
+            var feeAmountTruncated = feeAmount.TruncateDecimalPlaces(asset.Accuracy, true);
+
+            var urlData = await _paymentUrlDataService.GetUrlDataAsync(
+                paymentSystem.ToString(),
+                transactionId,
+                model.ClientId,
+                model.Amount + feeAmountTruncated,
+                model.AssetId,
+                model.WalletId,
+                model.GetCountryIso3Code(),
+                info);
+
+            await _paymentTransactionEventLogService.InsertPaymentTransactionEventLogAsync(new PaymentTransactionEventLog
             {
-                urlData = await paymentGatewayService.GetUrlData(model.OrderId, model.ClientId, model.Amount, assetId, model.OtherInfoJson);
+                PaymentTransactionId = transactionId,
+                Message = "Payment Url has created",
+                DateTime = DateTime.Now,
+                TechData = urlData.PaymentUrl,
+                Who = model.ClientId
+            });
+
+            if (!string.IsNullOrEmpty(urlData.ErrorMessage))
+            {
+                await _log.WriteWarningAsync(nameof(PaymentUrlDataController), nameof(Post), model.ToJson(),
+                    urlData.ErrorMessage, DateTime.UtcNow);
+
+                return BadRequest(new
+                {
+                    message = urlData.ErrorMessage
+                });
             }
+
+            await _paymentTransactionsService.InsertPaymentTransactionAsync(
+                new PaymentTransaction
+                {
+                    Amount = model.Amount,
+                    Status = PaymentStatus.Created,
+                    PaymentSystem = paymentSystem,
+                    FeeAmount = feeAmountTruncated,
+                    Id = transactionId,
+                    ClientId = model.ClientId,
+                    AssetId = model.AssetId,
+                    DepositedAssetId = model.AssetId,
+                    WalletId = model.WalletId,
+                    Info = info
+                });
+
+            await _paymentTransactionEventLogService.InsertPaymentTransactionEventLogAsync(new PaymentTransactionEventLog
+            {
+                PaymentTransactionId = transactionId,
+                Message = "Registered",
+                DateTime = DateTime.Now,
+                TechData = string.Empty,
+                Who = model.ClientId
+            });
+
+            // mode=iframe is for Mobile version 
+            if (!string.IsNullOrWhiteSpace(urlData.PaymentUrl))
+                urlData.PaymentUrl = urlData.PaymentUrl
+                                     + (urlData.PaymentUrl.Contains("?") ? "&" : "?")
+                                     + "mode=iframe";
 
             var result = new PaymentUrlDataResponse
             {
-                PaymentUrl = urlData.PaymentUrl,
+                Url = urlData.PaymentUrl,
                 OkUrl = urlData.OkUrl,
-                FailUrl = urlData.FailUrl,
-                ReloadRegexp = urlData.ReloadRegexp,
-                UrlsRegexp = urlData.UrlsRegexp,
-                ErrorMessage = urlData.ErrorMessage,
-                PaymentSystem = paymentSystem,
+                FailUrl = urlData.FailUrl
             };
+
             return Ok(result);
         }
     }

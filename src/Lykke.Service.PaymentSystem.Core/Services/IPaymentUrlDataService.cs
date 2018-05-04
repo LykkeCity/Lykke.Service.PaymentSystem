@@ -1,13 +1,22 @@
-﻿using Lykke.Contracts.Payments;
+﻿using System.Threading.Tasks;
+using Lykke.Contracts.Payments;
 using Lykke.Service.ClientAccount.Client.AutorestClient.Models;
+using Lykke.Service.PaymentSystem.Core.Domain.PaymentUrlData;
 
 namespace Lykke.Service.PaymentSystem.Core.Services
 {
     public interface IPaymentUrlDataService
     {
-        bool IsPaymentSystemSupported(CashInPaymentSystem paymentSystem, string assetId);
-        string SelectFxpaygateService(OwnerType owner, string legalEntity = null);
-        string SelectCreditVouchersService();
-        bool IsFxpaygateAndSpot(string clientPaymentSystem, string assetId, string isoCountryCode);
+        Task<PaymentUrlData> GetUrlDataAsync(
+            string paymentSystem, 
+            string transactionId, 
+            string clientId, 
+            double fullAmount, 
+            string assetId, 
+            string walletId, 
+            string countryIso3Code, 
+            string info);
+
+        Task<string> GenerateNewTransactionIdAsync();
     }
 }

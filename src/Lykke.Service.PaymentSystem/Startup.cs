@@ -21,8 +21,8 @@ namespace Lykke.Service.PaymentSystem
 {
     public class Startup
     {
-        public string ApiVersion => "1.0";
-        public string ApiTitle => "Lykke Exchange Operations Service";
+        public string ApiVersion => "v1";
+        public string ApiTitle => "Lykke Payment System";
 
         public IHostingEnvironment Environment { get; }
         public IContainer ApplicationContainer { get; private set; }
