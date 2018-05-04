@@ -1,12 +1,19 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Common.Log;
+using Lykke.Service.Assets.Client;
 using Lykke.Service.ClientAccount.Client;
+using Lykke.Service.FeeCalculator.Client;
+using Lykke.Service.PaymentSystem.AzureRepositories;
+using Lykke.Service.PaymentSystem.Core.Repositories;
 using Lykke.Service.PaymentSystem.Core.Services;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings.PaymentSystem;
 using Lykke.Service.PaymentSystem.Services;
 using Lykke.Service.PaymentSystem.Services.Services;
+using Lykke.Service.PersonalData.Client;
+using Lykke.Service.PersonalData.Contract;
 using Lykke.SettingsReader;
 using MarginTrading.Backend.Contracts.DataReaderClient;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,6 +68,13 @@ namespace Lykke.Service.PaymentSystem.Modules
                 "Lykke.Service.PaymentSystem");
 
             builder.RegisterLykkeServiceClient(_settings.CurrentValue.ClientAccountServiceClient.ServiceUrl);
+            builder.RegisterInstance<IAssetsService>(
+                new AssetsService(new Uri(_settings.CurrentValue.AssetsServices.ServiceUrl)));
+
+            builder.RegisterType<PersonalDataService>().As<IPersonalDataService>()
+                .WithParameter(TypedParameter.From(_settings.CurrentValue.PersonalDataServiceSettings));
+
+            builder.RegisterFeeCalculatorClient(_settings.CurrentValue.FeeCalculatorServiceClient.ServiceUrl, _log);
 
             builder.Populate(services);
 

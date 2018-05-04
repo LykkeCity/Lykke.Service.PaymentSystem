@@ -8,12 +8,7 @@ namespace Lykke.Service.PaymentSystem
     {
         public AutoMapperProfile()
         {
-            CreateMap<IPaymentTransaction, PaymentTransactionResponse>()
-                .ForMember(dest => dest.OtherData, opt => opt.Ignore())
-                ;
-
-            CreateMap<IPaymentLimits, PaymentLimitsResponse>()
-                ;
+          CreateMap<IPaymentLimits, PaymentLimitsResponse>();
         }
     }
 }

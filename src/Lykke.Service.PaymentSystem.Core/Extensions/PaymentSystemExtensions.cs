@@ -1,7 +1,7 @@
 ﻿using System;
-using Lykke.Service.PaymentSystem.Client.AutorestClient.Models;
+using Lykke.Service.PaymentSystem.Core.Domain;
 
-namespace Lykke.Service.PaymentSystem.Client.Extensions
+namespace Lykke.Service.PaymentSystem.Core.Extensions
 {
     /// <summary>
     /// PaymentSystem extensions
@@ -14,18 +14,18 @@ namespace Lykke.Service.PaymentSystem.Client.Extensions
         /// <typeparam name="T">Return type</typeparam>
         /// <param name="src">PaymentTransactionResponse object</param>
         /// <returns>Deserialize object as T</returns>
-        public static T GetInfo<T>(this PaymentTransactionResponse src)
+        public static T GetInfo<T>(this IPaymentTransaction src)
         {
             if (!PaymentSystemsAndOtherInfo.PsAndOtherInfoLinks.ContainsKey(src.PaymentSystem))
             {
-                throw new BadPaymentSystemException("Unsupported payment system for reading other info: transactionId:" + src.Id);
+                throw new ArgumentException("Unsupported payment system for reading other info: transactionId:" + src.Id);
             }
 
             var type = PaymentSystemsAndOtherInfo.PsAndOtherInfoLinks[src.PaymentSystem];
 
             if (type != typeof(T))
             {
-                throw new BadPaymentSystemException("Payment system and Other info does not match for transactionId:" + src.Id);
+                throw new ArgumentException("Payment system and Other info does not match for transactionId:" + src.Id);
             }
 
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(src.Info);

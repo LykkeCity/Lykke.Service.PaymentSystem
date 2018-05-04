@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using Lykke.Contracts.Payments;
-using CashInPaymentSystem = Lykke.Service.PaymentSystem.Client.AutorestClient.Models.CashInPaymentSystem;
 
-namespace Lykke.Service.PaymentSystem.Client.Extensions
+namespace Lykke.Service.PaymentSystem.Core.Extensions
 {
     /// <summary>
     /// PaymentSystemsAndOtherInfo

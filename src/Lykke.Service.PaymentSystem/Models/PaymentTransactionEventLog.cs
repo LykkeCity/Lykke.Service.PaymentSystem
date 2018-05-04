@@ -3,7 +3,7 @@ using Lykke.Service.PaymentSystem.Core.Domain;
 
 namespace Lykke.Service.PaymentSystem.Models
 {
-    public class PaymentTransactionEventLogRequest : IPaymentTransactionEventLog
+    public class PaymentTransactionEventLog : IPaymentTransactionEventLog
     {
         public string PaymentTransactionId { get; set; }
         public DateTime DateTime { get; set; }

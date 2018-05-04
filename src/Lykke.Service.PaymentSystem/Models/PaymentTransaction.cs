@@ -4,7 +4,7 @@ using Lykke.Service.PaymentSystem.Core.Domain;
 
 namespace Lykke.Service.PaymentSystem.Models
 {
-    public class PaymentTransactionRequest : IPaymentTransaction
+    public class PaymentTransaction : IPaymentTransaction
     {
         public string Id { get; set; }
         public string ClientId { get; set; }

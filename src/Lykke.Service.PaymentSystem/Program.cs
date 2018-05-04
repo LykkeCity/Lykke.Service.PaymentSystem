@@ -6,7 +6,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Lykke.Service.PaymentSystem
 {
-    public class Program
+    public static class Program
     {
         public static string EnvInfo => Environment.GetEnvironmentVariable("ENV_INFO");
 
