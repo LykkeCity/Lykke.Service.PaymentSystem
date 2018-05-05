@@ -34,7 +34,7 @@ namespace Lykke.Service.PaymentSystem.Models
             if (CountryManager.HasIso2(Country))
                 return CountryManager.Iso2ToIso3(Country);
 
-            throw new Exception($"Country code {Country} not found in CountryManager");
+            throw new ArgumentException($"Country code {Country} not found in CountryManager");
         }
     }
 }
