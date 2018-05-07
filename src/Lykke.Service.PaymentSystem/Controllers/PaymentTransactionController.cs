@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
 using Lykke.Contracts.Payments;
+using Lykke.Service.PaymentSystem.Core.Components;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Lykke.Service.PaymentSystem.Core.Services;
@@ -14,13 +15,16 @@ namespace Lykke.Service.PaymentSystem.Controllers
     {
         private readonly IPaymentTransactionsService _paymentTransactionsService;
         private readonly IPersonalDataService _personalDataService;
+        private readonly ICountryComponent _countryComponent;
 
         public PaymentTransactionController(
             IPaymentTransactionsService paymentTransactionsService, 
-            IPersonalDataService personalDataService)
+            IPersonalDataService personalDataService, 
+            ICountryComponent countryComponent)
         {
             _paymentTransactionsService = paymentTransactionsService;
             _personalDataService = personalDataService;
+            _countryComponent = countryComponent;
         }
 
         [HttpGet]
@@ -44,6 +48,8 @@ namespace Lykke.Service.PaymentSystem.Controllers
             var result = isCreditVoucherOrFxpaygate
                 ? PaymentTransactionResponse.Create(lastPaymentTransaction, personalData)
                 : PaymentTransactionResponse.Create(personalData);
+
+            result.Country = _countryComponent.GetCountryIso3Code(result.Country);
 
             return Ok(result);
         }

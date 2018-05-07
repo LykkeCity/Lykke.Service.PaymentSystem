@@ -11,6 +11,7 @@ using Lykke.Service.PaymentSystem.Core.Services;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings.PaymentSystem;
 using Lykke.Service.PaymentSystem.Services;
+using Lykke.Service.PaymentSystem.Services.Components;
 using Lykke.Service.PaymentSystem.Services.Services;
 using Lykke.Service.PersonalData.Client;
 using Lykke.Service.PersonalData.Contract;
@@ -53,6 +54,11 @@ namespace Lykke.Service.PaymentSystem.Modules
 
             builder.RegisterAssemblyTypes(typeof(IService).Assembly)
                 .Where(t => typeof(IService).IsAssignableFrom(t))
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterAssemblyTypes(typeof(IComponent).Assembly)
+                .Where(t => typeof(IComponent).IsAssignableFrom(t))
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
 
