@@ -8,6 +8,7 @@ using Lykke.Service.Assets.Client;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Lykke.Service.FeeCalculator.Client;
+using Lykke.Service.PaymentSystem.Core.Components;
 using Lykke.Service.PaymentSystem.Core.Constants;
 using Lykke.Service.PaymentSystem.Core.Enums;
 using Lykke.Service.PaymentSystem.Core.Services;
@@ -22,6 +23,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
         private readonly IPaymentUrlDataService _paymentUrlDataService;
         private readonly IPaymentTransactionEventLogService _paymentTransactionEventLogService;
         private readonly IPaymentTransactionsService _paymentTransactionsService;
+        private readonly ICountryComponent _countryComponent;
 
         private readonly IAssetsService _assetsService;
         private readonly IFeeCalculatorClient _feeCalculatorClient;
@@ -35,7 +37,8 @@ namespace Lykke.Service.PaymentSystem.Controllers
             ILog log,
             IAssetsService assetsService,
             IFeeCalculatorClient feeCalculatorClient,
-            IPersonalDataService personalDataService)
+            IPersonalDataService personalDataService, 
+            ICountryComponent countryComponent)
         {
             _paymentUrlDataService = paymentUrlDataService;
             _paymentTransactionEventLogService = paymentTransactionEventLogService;
@@ -44,6 +47,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
             _assetsService = assetsService;
             _feeCalculatorClient = feeCalculatorClient;
             _personalDataService = personalDataService;
+            _countryComponent = countryComponent;
         }
 
         [HttpPost]
@@ -55,6 +59,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
                 model.AssetId = LykkeConstants.UsdAssetId;
 
             var phoneNumberE164 = model.Phone.PreparePhoneNum().ToE164Number();
+            var countryAsIso3 = _countryComponent.GetCountryIso3Code(model.Country);
             var pd = await _personalDataService.GetAsync(model.ClientId);
 
             CashInPaymentSystem paymentSystem;
@@ -72,7 +77,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
                     break;
             }
 
-            var transactionId = (await _paymentUrlDataService.GenerateNewTransactionIdAsync()).ToString();
+            var transactionId = await _paymentUrlDataService.GenerateNewTransactionIdAsync();
 
             const string formatOfDateOfBirth = "yyyy-MM-dd";
 
@@ -82,7 +87,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
                     model.City,
                     model.Zip,
                     model.Address,
-                    model.Country,
+                    countryAsIso3,
                     model.Email,
                     phoneNumberE164,
                     pd.DateOfBirth?.ToString(formatOfDateOfBirth),
@@ -103,7 +108,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
                 model.Amount + feeAmountTruncated,
                 model.AssetId,
                 model.WalletId,
-                model.GetCountryIso3Code(),
+                countryAsIso3,
                 info);
 
             await _paymentTransactionEventLogService.InsertPaymentTransactionEventLogAsync(new PaymentTransactionEventLog
