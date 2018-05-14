@@ -61,6 +61,16 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
+        Task<HttpOperationResponse<IList<PaymentMethodResponse>>> GetPaymentMethodsWithHttpMessagesAsync(string clientId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <param name='clientId'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
         Task<HttpOperationResponse<PaymentTransactionResponse>> GetLastByDateWithHttpMessagesAsync(string clientId = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <param name='clientId'>

@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Lykke.Service.PaymentSystem.Client.AutorestClient.Models;
 
@@ -61,5 +62,13 @@ namespace Lykke.Service.PaymentSystem.Client
         /// </summary>
         /// <returns></returns>
         Task<PaymentLimitsResponse> GetPaymentLimitsAsync(CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Get PaymentMethods
+        /// </summary>
+        /// <param name="clientId">ClientId</param>
+        /// <param name="cancellationToken">CancellationToken</param>
+        /// <returns>List PaymentMethods</returns>
+        Task<IList<PaymentMethodResponse>> GetPaymentMethodsAsync(string clientId, CancellationToken cancellationToken = default(CancellationToken));
     }
 }
