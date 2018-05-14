@@ -211,6 +211,36 @@
             Thrown if validation fails
             </exception>
         </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.#ctor">
+            <summary>
+            Initializes a new instance of the PaymentMethod class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.#ctor(System.Boolean,System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Initializes a new instance of the PaymentMethod class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.Name">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.Assets">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.Available">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
         <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodResponse.#ctor">
             <summary>
             Initializes a new instance of the PaymentMethodResponse class.
@@ -240,6 +270,20 @@
             <exception cref="T:Microsoft.Rest.ValidationException">
             Thrown if validation fails
             </exception>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodsResponse.#ctor">
+            <summary>
+            Initializes a new instance of the PaymentMethodsResponse class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodsResponse.#ctor(System.Collections.Generic.IList{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod})">
+            <summary>
+            Initializes a new instance of the PaymentMethodsResponse class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodsResponse.PaymentMethods">
+            <summary>
+            </summary>
         </member>
         <member name="T:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentStatus">
             <summary>
