@@ -97,7 +97,7 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <param name="clientId">ClientId</param>
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns>List PaymentMethods</returns>
-        public async Task<IList<PaymentMethodResponse>> GetPaymentMethodsAsync(string clientId, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<PaymentMethodsResponse> GetPaymentMethodsAsync(string clientId, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await _service.GetPaymentMethodsAsync(clientId, cancellationToken);
         }

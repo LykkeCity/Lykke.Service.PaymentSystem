@@ -7,8 +7,6 @@
 namespace Lykke.Service.PaymentSystem.Client.AutorestClient
 {
     using Models;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -72,7 +70,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             /// </param>
             /// <param name='clientId'>
             /// </param>
-            public static IList<PaymentMethodResponse> GetPaymentMethods(this IPaymentSystemAPI operations, string clientId)
+            public static PaymentMethodsResponse GetPaymentMethods(this IPaymentSystemAPI operations, string clientId)
             {
                 return operations.GetPaymentMethodsAsync(clientId).GetAwaiter().GetResult();
             }
@@ -85,7 +83,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<PaymentMethodResponse>> GetPaymentMethodsAsync(this IPaymentSystemAPI operations, string clientId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<PaymentMethodsResponse> GetPaymentMethodsAsync(this IPaymentSystemAPI operations, string clientId, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetPaymentMethodsWithHttpMessagesAsync(clientId, null, cancellationToken).ConfigureAwait(false))
                 {

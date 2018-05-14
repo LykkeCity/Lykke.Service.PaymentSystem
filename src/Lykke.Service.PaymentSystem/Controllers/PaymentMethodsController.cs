@@ -17,15 +17,12 @@ namespace Lykke.Service.PaymentSystem.Controllers
         private readonly IClientAccountClient _clientAccount;
         private readonly IAppGlobalSettingsService _appGlobalSettingsService;
         private readonly PaymentSettings _paymentSettings;
-        private readonly ILog _log;
 
         public PaymentMethodsController(
-            ILog log,
             IClientAccountClient clientAccount,
             IAppGlobalSettingsService appGlobalSettingsService,
             PaymentSettings paymentSettings)
         {
-            _log = log;
             _clientAccount = clientAccount;
             _appGlobalSettingsService = appGlobalSettingsService;
             _paymentSettings = paymentSettings;
@@ -33,25 +30,28 @@ namespace Lykke.Service.PaymentSystem.Controllers
 
         [HttpPost("{clientId}")]
         [SwaggerOperation("GetPaymentMethods")]
-        [ProducesResponseType(typeof(PaymentMethodResponse[]), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(PaymentMethodsResponse), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get(string clientId)
         {
             var depositViaCreditCardBlocked = (await _clientAccount.GetDepositBlockAsync(clientId)).DepositViaCreditCardBlocked;
             var isOnMaintenance = await _appGlobalSettingsService.IsOnMaintenanceAsync();
 
-            var result = new[]
+            var result = new PaymentMethodsResponse
             {
-                new PaymentMethodResponse
+                PaymentMethods = new[]
                 {
-                    Name = CashInPaymentSystem.Fxpaygate.ToString(),
-                    Assets = _paymentSettings.Fxpaygate.SupportedCurrencies,
-                    Available = !depositViaCreditCardBlocked && !isOnMaintenance
-                },
-                new PaymentMethodResponse
-                {
-                    Name = CashInPaymentSystem.CreditVoucher.ToString(),
-                    Assets = _paymentSettings.CreditVouchers.SupportedCurrencies,
-                    Available = !isOnMaintenance
+                    new PaymentMethod
+                    {
+                        Name = CashInPaymentSystem.Fxpaygate.ToString(),
+                        Assets = _paymentSettings.Fxpaygate.SupportedCurrencies,
+                        Available = !depositViaCreditCardBlocked && !isOnMaintenance
+                    },
+                    new PaymentMethod
+                    {
+                        Name = CashInPaymentSystem.CreditVoucher.ToString(),
+                        Assets = _paymentSettings.CreditVouchers.SupportedCurrencies,
+                        Available = !isOnMaintenance
+                    }
                 }
             };
 

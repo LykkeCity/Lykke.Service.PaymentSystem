@@ -419,7 +419,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<PaymentMethodResponse>>> GetPaymentMethodsWithHttpMessagesAsync(string clientId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<PaymentMethodsResponse>> GetPaymentMethodsWithHttpMessagesAsync(string clientId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (clientId == null)
             {
@@ -499,7 +499,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<IList<PaymentMethodResponse>>();
+            var _result = new HttpOperationResponse<PaymentMethodsResponse>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -508,7 +508,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<IList<PaymentMethodResponse>>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<PaymentMethodsResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
