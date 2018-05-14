@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Log;
@@ -80,15 +81,25 @@ namespace Lykke.Service.PaymentSystem.Client
             return await _service.GetLastByDateAsync(clientId, cancellationToken);
         }
 
-     
         /// <summary>
         /// Get payment limits
         /// </summary>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">CancellationToken</param>
         /// <returns></returns>
         public async Task<PaymentLimitsResponse> GetPaymentLimitsAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             return await _service.GetPaymentLimitsAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Get PaymentMethods
+        /// </summary>
+        /// <param name="clientId">ClientId</param>
+        /// <param name="cancellationToken">CancellationToken</param>
+        /// <returns>List PaymentMethods</returns>
+        public async Task<IList<PaymentMethodResponse>> GetPaymentMethodsAsync(string clientId, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await _service.GetPaymentMethodsAsync(clientId, cancellationToken);
         }
 
         /// <summary>

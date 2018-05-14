@@ -39,6 +39,10 @@ namespace Lykke.Service.PaymentSystem.Services
                     _settings.ConnectionString(x => x.Db.ClientPersonalInfoConnString), "Setup", _log))
                 .As(typeof(INoSQLTableStorage<IdentityEntity>));
 
+            builder.Register(y => AzureTableStorage<AppGlobalSettingsEntity>
+                    .Create(_settings.ConnectionString(x => x.Db.ClientPersonalInfoConnString), "Setup", _log))
+                .As(typeof(INoSQLTableStorage<AppGlobalSettingsEntity>));
+
             builder.RegisterAssemblyTypes(typeof(IRepository).Assembly)
                 .Where(t => typeof(IRepository).IsAssignableFrom(t))
                 .AsImplementedInterfaces()
