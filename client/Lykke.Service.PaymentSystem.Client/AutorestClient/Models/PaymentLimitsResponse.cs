@@ -22,10 +22,12 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// <summary>
         /// Initializes a new instance of the PaymentLimitsResponse class.
         /// </summary>
-        public PaymentLimitsResponse(double creditVouchersMinValue, double creditVouchersMaxValue)
+        public PaymentLimitsResponse(double creditVouchersMinValue, double creditVouchersMaxValue, double fxpaygateMinValue, double fxpaygateMaxValue)
         {
             CreditVouchersMinValue = creditVouchersMinValue;
             CreditVouchersMaxValue = creditVouchersMaxValue;
+            FxpaygateMinValue = fxpaygateMinValue;
+            FxpaygateMaxValue = fxpaygateMaxValue;
             CustomInit();
         }
 
@@ -43,6 +45,16 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "CreditVouchersMaxValue")]
         public double CreditVouchersMaxValue { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "FxpaygateMinValue")]
+        public double FxpaygateMinValue { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "FxpaygateMaxValue")]
+        public double FxpaygateMaxValue { get; set; }
 
         /// <summary>
         /// Validate the object.
