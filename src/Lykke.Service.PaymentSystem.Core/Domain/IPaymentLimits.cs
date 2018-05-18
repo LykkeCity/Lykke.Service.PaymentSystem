@@ -4,5 +4,7 @@
     {
         double CreditVouchersMinValue { get; set; }
         double CreditVouchersMaxValue { get; set; }
+        double FxpaygateMinValue { get; set; }
+        double FxpaygateMaxValue { get; set; }
     }
 }

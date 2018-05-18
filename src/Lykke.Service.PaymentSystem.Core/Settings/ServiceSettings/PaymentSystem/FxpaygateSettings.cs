@@ -4,6 +4,8 @@ namespace Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings.PaymentSyste
 {
     public class FxpaygateSettings
     {
+        public double MinAmount { get; set; }
+        public double MaxAmount { get; set; }
         public string[] Currencies { get; set; }
         public string[] Countries { get; set; }
         public Dictionary<string, string> ServiceUrls { get; set; }

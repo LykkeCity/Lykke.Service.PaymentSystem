@@ -6,5 +6,7 @@ namespace Lykke.Service.PaymentSystem.Models
     {
         public double CreditVouchersMinValue { get; set; }
         public double CreditVouchersMaxValue { get; set; }
+        public double FxpaygateMinValue { get; set; }
+        public double FxpaygateMaxValue { get; set; }
     }
 }
