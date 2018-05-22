@@ -1,0 +1,860 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Lykke.Service.PaymentSystem.Client</name>
+    </assembly>
+    <members>
+        <member name="T:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI.BaseUri">
+            <summary>
+            The base URI of the service.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI.SerializationSettings">
+            <summary>
+            Gets or sets json serialization settings.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI.DeserializationSettings">
+            <summary>
+            Gets or sets json deserialization settings.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI.IsAliveWithHttpMessagesAsync(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            Checks service is alive
+            </summary>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI.GetPaymentLimitsWithHttpMessagesAsync(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI.GetPaymentMethodsWithHttpMessagesAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <param name='clientId'>
+            </param>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI.GetLastByDateWithHttpMessagesAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <param name='clientId'>
+            </param>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI.PostPaymentUrlDataWithHttpMessagesAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption},System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <param name='clientId'>
+            </param>
+            <param name='amount'>
+            </param>
+            <param name='assetId'>
+            </param>
+            <param name='walletId'>
+            </param>
+            <param name='firstName'>
+            </param>
+            <param name='lastName'>
+            </param>
+            <param name='city'>
+            </param>
+            <param name='zip'>
+            </param>
+            <param name='address'>
+            </param>
+            <param name='country'>
+            </param>
+            <param name='email'>
+            </param>
+            <param name='phone'>
+            </param>
+            <param name='depositOption'>
+            Possible values include: 'Unknown', 'BankCard', 'Other'
+            </param>
+            <param name='okUrl'>
+            </param>
+            <param name='failUrl'>
+            </param>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="T:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.CashInPaymentSystem">
+            <summary>
+            Defines values for CashInPaymentSystem.
+            </summary>
+        </member>
+        <member name="T:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption">
+            <summary>
+            Defines values for DepositOption.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.ErrorResponse.#ctor">
+            <summary>
+            Initializes a new instance of the ErrorResponse class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.ErrorResponse.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}})">
+            <summary>
+            Initializes a new instance of the ErrorResponse class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.ErrorResponse.ErrorMessage">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.ErrorResponse.ModelErrors">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IsAliveResponse.#ctor">
+            <summary>
+            Initializes a new instance of the IsAliveResponse class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IsAliveResponse.#ctor(System.Boolean,System.String,System.String,System.String,System.Collections.Generic.IList{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IssueIndicator})">
+            <summary>
+            Initializes a new instance of the IsAliveResponse class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IsAliveResponse.Name">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IsAliveResponse.Version">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IsAliveResponse.Env">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IsAliveResponse.IsDebug">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IsAliveResponse.IssueIndicators">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IsAliveResponse.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IssueIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the IssueIndicator class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IssueIndicator.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the IssueIndicator class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IssueIndicator.Type">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.IssueIndicator.Value">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.#ctor">
+            <summary>
+            Initializes a new instance of the PaymentLimitsResponse class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PaymentLimitsResponse class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.CreditVouchersMinValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.CreditVouchersMaxValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.FxpaygateMinValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.FxpaygateMaxValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.#ctor">
+            <summary>
+            Initializes a new instance of the PaymentMethod class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.#ctor(System.Boolean,System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Initializes a new instance of the PaymentMethod class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.Name">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.Assets">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.Available">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodResponse.#ctor">
+            <summary>
+            Initializes a new instance of the PaymentMethodResponse class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodResponse.#ctor(System.Boolean,System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Initializes a new instance of the PaymentMethodResponse class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodResponse.Name">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodResponse.Assets">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodResponse.Available">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodResponse.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodsResponse.#ctor">
+            <summary>
+            Initializes a new instance of the PaymentMethodsResponse class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodsResponse.#ctor(System.Collections.Generic.IList{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethod})">
+            <summary>
+            Initializes a new instance of the PaymentMethodsResponse class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentMethodsResponse.PaymentMethods">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentStatus">
+            <summary>
+            Defines values for PaymentStatus.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.#ctor">
+            <summary>
+            Initializes a new instance of the PaymentTransactionResponse class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.#ctor(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the PaymentTransactionResponse class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.Amount">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.AssetId">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.WalletId">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.FirstName">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.LastName">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.City">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.Zip">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.Address">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.Country">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.Email">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.Phone">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.DepositOption">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.OkUrl">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.FailUrl">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentTransactionResponse.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentUrlDataResponse.#ctor">
+            <summary>
+            Initializes a new instance of the PaymentUrlDataResponse class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentUrlDataResponse.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the PaymentUrlDataResponse class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentUrlDataResponse.Url">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentUrlDataResponse.OkUrl">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentUrlDataResponse.FailUrl">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.BaseUri">
+            <summary>
+            The base URI of the service.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.SerializationSettings">
+            <summary>
+            Gets or sets json serialization settings.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.DeserializationSettings">
+            <summary>
+            Gets or sets json deserialization settings.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.#ctor(System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the PaymentSystemAPI class.
+            </summary>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.#ctor(System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the PaymentSystemAPI class.
+            </summary>
+            <param name='rootHandler'>
+            Optional. The http client handler used to handle http transport.
+            </param>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.#ctor(System.Uri,System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the PaymentSystemAPI class.
+            </summary>
+            <param name='baseUri'>
+            Optional. The base URI of the service.
+            </param>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.#ctor(System.Uri,System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the PaymentSystemAPI class.
+            </summary>
+            <param name='baseUri'>
+            Optional. The base URI of the service.
+            </param>
+            <param name='rootHandler'>
+            Optional. The http client handler used to handle http transport.
+            </param>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.Initialize">
+            <summary>
+            Initializes client properties.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.IsAliveWithHttpMessagesAsync(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            Checks service is alive
+            </summary>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.HttpOperationException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.GetPaymentLimitsWithHttpMessagesAsync(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.HttpOperationException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.GetPaymentMethodsWithHttpMessagesAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <param name='clientId'>
+            </param>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.HttpOperationException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.GetLastByDateWithHttpMessagesAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <param name='clientId'>
+            </param>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.HttpOperationException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.PostPaymentUrlDataWithHttpMessagesAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption},System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <param name='clientId'>
+            </param>
+            <param name='amount'>
+            </param>
+            <param name='assetId'>
+            </param>
+            <param name='walletId'>
+            </param>
+            <param name='firstName'>
+            </param>
+            <param name='lastName'>
+            </param>
+            <param name='city'>
+            </param>
+            <param name='zip'>
+            </param>
+            <param name='address'>
+            </param>
+            <param name='country'>
+            </param>
+            <param name='email'>
+            </param>
+            <param name='phone'>
+            </param>
+            <param name='depositOption'>
+            Possible values include: 'Unknown', 'BankCard', 'Other'
+            </param>
+            <param name='okUrl'>
+            </param>
+            <param name='failUrl'>
+            </param>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.HttpOperationException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="T:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions">
+            <summary>
+            Extension methods for PaymentSystemAPI.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.IsAlive(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI)">
+            <summary>
+            Checks service is alive
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.IsAliveAsync(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.Threading.CancellationToken)">
+            <summary>
+            Checks service is alive
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.GetPaymentLimits(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI)">
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.GetPaymentLimitsAsync(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.Threading.CancellationToken)">
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.GetPaymentMethods(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String)">
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='clientId'>
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.GetPaymentMethodsAsync(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String,System.Threading.CancellationToken)">
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='clientId'>
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.GetLastByDate(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String)">
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='clientId'>
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.GetLastByDateAsync(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String,System.Threading.CancellationToken)">
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='clientId'>
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.PostPaymentUrlData(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption},System.String,System.String)">
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='clientId'>
+            </param>
+            <param name='amount'>
+            </param>
+            <param name='assetId'>
+            </param>
+            <param name='walletId'>
+            </param>
+            <param name='firstName'>
+            </param>
+            <param name='lastName'>
+            </param>
+            <param name='city'>
+            </param>
+            <param name='zip'>
+            </param>
+            <param name='address'>
+            </param>
+            <param name='country'>
+            </param>
+            <param name='email'>
+            </param>
+            <param name='phone'>
+            </param>
+            <param name='depositOption'>
+            Possible values include: 'Unknown', 'BankCard', 'Other'
+            </param>
+            <param name='okUrl'>
+            </param>
+            <param name='failUrl'>
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.PostPaymentUrlDataAsync(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption},System.String,System.String,System.Threading.CancellationToken)">
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='clientId'>
+            </param>
+            <param name='amount'>
+            </param>
+            <param name='assetId'>
+            </param>
+            <param name='walletId'>
+            </param>
+            <param name='firstName'>
+            </param>
+            <param name='lastName'>
+            </param>
+            <param name='city'>
+            </param>
+            <param name='zip'>
+            </param>
+            <param name='address'>
+            </param>
+            <param name='country'>
+            </param>
+            <param name='email'>
+            </param>
+            <param name='phone'>
+            </param>
+            <param name='depositOption'>
+            Possible values include: 'Unknown', 'BankCard', 'Other'
+            </param>
+            <param name='okUrl'>
+            </param>
+            <param name='failUrl'>
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="T:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient">
+            <summary>
+            PaymentSystemClient
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.GetUrlDataAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get urls for payment
+            </summary>
+            <param name="clientId">ClientId</param>
+            <param name="amount">Amount</param>
+            <param name="assetId">AssetId</param>
+            <param name="walletId">WalletId</param>
+            <param name="firstName">First name</param>
+            <param name="lastName">Last name</param>
+            <param name="city">City</param>
+            <param name="zip">Zip</param>
+            <param name="address">Address</param>
+            <param name="country">Country</param>
+            <param name="email">Email</param>
+            <param name="phone">Phone</param>
+            <param name="depositOption">Deposit option</param>
+            <param name="okUrl">OkUrl</param>
+            <param name="failUrl">FailUrl</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns>Url fot payment</returns>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.GetLastByDateAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get last PaymentTransaction by date
+            </summary>
+            <param name="clientId">ClientId</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns>PaymentTransactionResponse</returns>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.GetPaymentLimitsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get payment limits
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.GetPaymentMethodsAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get PaymentMethods
+            </summary>
+            <param name="clientId">ClientId</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns>List PaymentMethods</returns>
+        </member>
+        <member name="T:Lykke.Service.PaymentSystem.Client.PaymentSystemClient">
+            <summary>
+            PaymentSystemClient
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="serviceUrl">Service URL</param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.GetUrlDataAsync(System.String,System.Nullable{System.Double},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Lykke.Service.PaymentSystem.Client.AutorestClient.Models.DepositOption,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get urls for payment
+            </summary>
+            <param name="clientId">ClientId</param>
+            <param name="amount">Amount</param>
+            <param name="assetId">AssetId</param>
+            <param name="walletId">WalletId</param>
+            <param name="firstName">First name</param>
+            <param name="lastName">Last name</param>
+            <param name="city">City</param>
+            <param name="zip">Zip</param>
+            <param name="address">Address</param>
+            <param name="country">Country</param>
+            <param name="email">Email</param>
+            <param name="phone">Phone</param>
+            <param name="depositOption">Deposit option</param>
+            <param name="okUrl">OkUrl</param>
+            <param name="failUrl">FailUrl</param>
+            <param name="depositOptionEnum">DepositOptionEnum</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.GetLastByDateAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get last PaymentTransaction by date
+            </summary>
+            <param name="clientId">ClientId</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns>PaymentTransactionResponse</returns>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.GetPaymentLimitsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get payment limits
+            </summary>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.GetPaymentMethodsAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get PaymentMethods
+            </summary>
+            <param name="clientId">ClientId</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns>List PaymentMethods</returns>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.Dispose">
+            <summary>
+            Dispose
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.Dispose(System.Boolean)">
+            <summary>
+            Inner dispose
+            </summary>
+            <param name="disposing">disposing flag</param>
+        </member>
+    </members>
+</doc>

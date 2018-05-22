@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <Version>1.0.1</Version>
+    <AssemblyName>Lykke.Service.PaymentSystem</AssemblyName>
+    <RootNamespace>Lykke.Service.PaymentSystem</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netcoreapp2.0\Lykke.Service.PaymentSystem.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\Lykke.Service.PaymentSystem.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Update="appsetting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Dockerfile">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="Lykke.Common" Version="6.6.0" />
+    <PackageReference Include="Lykke.Common.ApiLibrary" Version="1.7.0" />
+    <PackageReference Include="Lykke.Logs" Version="4.3.0" />
+    <PackageReference Include="Lykke.MarginTrading.Backend.Contracts" Version="1.5.2" />
+    <PackageReference Include="Lykke.Payments.Client" Version="1.0.8" />
+    <PackageReference Include="Lykke.Service.Assets.Client" Version="3.3.2" />
+    <PackageReference Include="Lykke.Service.ClientAccount.Client" Version="1.3.0" />
+    <PackageReference Include="Lykke.Service.FeeCalculator.Client" Version="2.1.3" />
+    <PackageReference Include="Lykke.Service.PersonalData" Version="1.0.55" />
+    <PackageReference Include="Lykke.Service.Session" Version="1.0.33" />
+    <PackageReference Include="Lykke.SettingsReader" Version="2.3.1" />
+    <PackageReference Include="Lykke.SlackNotification.AzureQueue" Version="2.0.2" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Lykke.Service.PaymentSystem.Core\Lykke.Service.PaymentSystem.Core.csproj" />
+    <ProjectReference Include="..\Lykke.Service.PaymentSystem.Services\Lykke.Service.PaymentSystem.Services.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Settings\" />
+  </ItemGroup>
+
+  <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
+    <ItemGroup>
+      <DocFile Include="$(OutputPath)$(AssemblyName).xml" />
+    </ItemGroup>
+    <Copy SourceFiles="@(DocFile)" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="false" />
+  </Target>
+
+</Project>
