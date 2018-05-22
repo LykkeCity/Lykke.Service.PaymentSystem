@@ -190,7 +190,7 @@
             Initializes a new instance of the PaymentLimitsResponse class.
             </summary>
         </member>
-        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.#ctor(System.Double,System.Double)">
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.#ctor(System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Initializes a new instance of the PaymentLimitsResponse class.
             </summary>
@@ -200,6 +200,14 @@
             </summary>
         </member>
         <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.CreditVouchersMaxValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.FxpaygateMinValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.PaymentLimitsResponse.FxpaygateMaxValue">
             <summary>
             </summary>
         </member>
