@@ -22,7 +22,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// <summary>
         /// Initializes a new instance of the PaymentTransactionResponse class.
         /// </summary>
-        public PaymentTransactionResponse(double amount, string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string depositOption = default(string), string okUrl = default(string), string failUrl = default(string))
+        public PaymentTransactionResponse(double amount, string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string okUrl = default(string), string failUrl = default(string))
         {
             Amount = amount;
             AssetId = assetId;
@@ -35,7 +35,6 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
             Country = country;
             Email = email;
             Phone = phone;
-            DepositOption = depositOption;
             OkUrl = okUrl;
             FailUrl = failUrl;
             CustomInit();
@@ -100,11 +99,6 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "Phone")]
         public string Phone { get; set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "DepositOption")]
-        public string DepositOption { get; set; }
 
         /// <summary>
         /// </summary>
