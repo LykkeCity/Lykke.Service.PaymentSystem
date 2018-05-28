@@ -11,7 +11,7 @@ namespace Lykke.Service.PaymentSystem.Client
     /// <summary>
     /// PaymentSystemClient
     /// </summary>
-    public class PaymentSystemClient : IPaymentSystemClient, IDisposable
+    public class PaymentSystemClient :  IDisposable
     {
         private PaymentSystemAPI _service;
 
@@ -61,13 +61,12 @@ namespace Lykke.Service.PaymentSystem.Client
             string country, 
             string email, 
             string phone,
-            DepositOption depositOption, 
             string okUrl, 
             string failUrl, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await _service.PostPaymentUrlDataAsync(clientId, amount, assetId, walletId, firstName, lastName,
-                city, zip, address, country, email, phone, depositOption, okUrl, failUrl, cancellationToken);
+            return await _service.PaymentUrlAsync(clientId, amount, assetId, walletId, firstName, lastName,
+                city, zip, address, country, email, phone, okUrl, failUrl, cancellationToken);
         }
 
         /// <summary>
@@ -78,7 +77,7 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <returns>PaymentTransactionResponse</returns>
         public async Task<PaymentTransactionResponse> GetLastByDateAsync(string clientId = default(string), CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await _service.GetLastByDateAsync(clientId, cancellationToken);
+            return await _service.LastAsync(clientId, cancellationToken);
         }
 
         /// <summary>

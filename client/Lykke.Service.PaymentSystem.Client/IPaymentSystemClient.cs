@@ -25,7 +25,6 @@ namespace Lykke.Service.PaymentSystem.Client
         /// <param name="country">Country</param>
         /// <param name="email">Email</param>
         /// <param name="phone">Phone</param>
-        /// <param name="depositOption">Deposit option</param>
         /// <param name="okUrl">OkUrl</param>
         /// <param name="failUrl">FailUrl</param>
         /// <param name="cancellationToken">CancellationToken</param>
@@ -43,7 +42,6 @@ namespace Lykke.Service.PaymentSystem.Client
             string country,
             string email,
             string phone,
-            DepositOption depositOption,
             string okUrl,
             string failUrl,
             CancellationToken cancellationToken = default(CancellationToken));

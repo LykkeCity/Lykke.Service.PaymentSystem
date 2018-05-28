@@ -15,6 +15,110 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
     /// </summary>
     public static partial class PaymentSystemAPIExtensions
     {
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='clientId'>
+            /// </param>
+            public static PaymentTransactionResponse Last(this IPaymentSystemAPI operations, string clientId = default(string))
+            {
+                return operations.LastAsync(clientId).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='clientId'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<PaymentTransactionResponse> LastAsync(this IPaymentSystemAPI operations, string clientId = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.LastWithHttpMessagesAsync(clientId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='clientId'>
+            /// </param>
+            /// <param name='amount'>
+            /// </param>
+            /// <param name='assetId'>
+            /// </param>
+            /// <param name='walletId'>
+            /// </param>
+            /// <param name='firstName'>
+            /// </param>
+            /// <param name='lastName'>
+            /// </param>
+            /// <param name='city'>
+            /// </param>
+            /// <param name='zip'>
+            /// </param>
+            /// <param name='address'>
+            /// </param>
+            /// <param name='country'>
+            /// </param>
+            /// <param name='email'>
+            /// </param>
+            /// <param name='phone'>
+            /// </param>
+            /// <param name='okUrl'>
+            /// </param>
+            /// <param name='failUrl'>
+            /// </param>
+            public static PaymentUrlDataResponse PaymentUrl(this IPaymentSystemAPI operations, string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string okUrl = default(string), string failUrl = default(string))
+            {
+                return operations.PaymentUrlAsync(clientId, amount, assetId, walletId, firstName, lastName, city, zip, address, country, email, phone, okUrl, failUrl).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='clientId'>
+            /// </param>
+            /// <param name='amount'>
+            /// </param>
+            /// <param name='assetId'>
+            /// </param>
+            /// <param name='walletId'>
+            /// </param>
+            /// <param name='firstName'>
+            /// </param>
+            /// <param name='lastName'>
+            /// </param>
+            /// <param name='city'>
+            /// </param>
+            /// <param name='zip'>
+            /// </param>
+            /// <param name='address'>
+            /// </param>
+            /// <param name='country'>
+            /// </param>
+            /// <param name='email'>
+            /// </param>
+            /// <param name='phone'>
+            /// </param>
+            /// <param name='okUrl'>
+            /// </param>
+            /// <param name='failUrl'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<PaymentUrlDataResponse> PaymentUrlAsync(this IPaymentSystemAPI operations, string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string okUrl = default(string), string failUrl = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.PaymentUrlWithHttpMessagesAsync(clientId, amount, assetId, walletId, firstName, lastName, city, zip, address, country, email, phone, okUrl, failUrl, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
             /// <summary>
             /// Checks service is alive
             /// </summary>
@@ -86,116 +190,6 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             public static async Task<PaymentMethodsResponse> GetPaymentMethodsAsync(this IPaymentSystemAPI operations, string clientId, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetPaymentMethodsWithHttpMessagesAsync(clientId, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
-            }
-
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='clientId'>
-            /// </param>
-            public static PaymentTransactionResponse GetLastByDate(this IPaymentSystemAPI operations, string clientId = default(string))
-            {
-                return operations.GetLastByDateAsync(clientId).GetAwaiter().GetResult();
-            }
-
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='clientId'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<PaymentTransactionResponse> GetLastByDateAsync(this IPaymentSystemAPI operations, string clientId = default(string), CancellationToken cancellationToken = default(CancellationToken))
-            {
-                using (var _result = await operations.GetLastByDateWithHttpMessagesAsync(clientId, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
-            }
-
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='clientId'>
-            /// </param>
-            /// <param name='amount'>
-            /// </param>
-            /// <param name='assetId'>
-            /// </param>
-            /// <param name='walletId'>
-            /// </param>
-            /// <param name='firstName'>
-            /// </param>
-            /// <param name='lastName'>
-            /// </param>
-            /// <param name='city'>
-            /// </param>
-            /// <param name='zip'>
-            /// </param>
-            /// <param name='address'>
-            /// </param>
-            /// <param name='country'>
-            /// </param>
-            /// <param name='email'>
-            /// </param>
-            /// <param name='phone'>
-            /// </param>
-            /// <param name='depositOption'>
-            /// Possible values include: 'Unknown', 'BankCard', 'Other'
-            /// </param>
-            /// <param name='okUrl'>
-            /// </param>
-            /// <param name='failUrl'>
-            /// </param>
-            public static PaymentUrlDataResponse PostPaymentUrlData(this IPaymentSystemAPI operations, string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), DepositOption? depositOption = default(DepositOption?), string okUrl = default(string), string failUrl = default(string))
-            {
-                return operations.PostPaymentUrlDataAsync(clientId, amount, assetId, walletId, firstName, lastName, city, zip, address, country, email, phone, depositOption, okUrl, failUrl).GetAwaiter().GetResult();
-            }
-
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='clientId'>
-            /// </param>
-            /// <param name='amount'>
-            /// </param>
-            /// <param name='assetId'>
-            /// </param>
-            /// <param name='walletId'>
-            /// </param>
-            /// <param name='firstName'>
-            /// </param>
-            /// <param name='lastName'>
-            /// </param>
-            /// <param name='city'>
-            /// </param>
-            /// <param name='zip'>
-            /// </param>
-            /// <param name='address'>
-            /// </param>
-            /// <param name='country'>
-            /// </param>
-            /// <param name='email'>
-            /// </param>
-            /// <param name='phone'>
-            /// </param>
-            /// <param name='depositOption'>
-            /// Possible values include: 'Unknown', 'BankCard', 'Other'
-            /// </param>
-            /// <param name='okUrl'>
-            /// </param>
-            /// <param name='failUrl'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<PaymentUrlDataResponse> PostPaymentUrlDataAsync(this IPaymentSystemAPI operations, string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), DepositOption? depositOption = default(DepositOption?), string okUrl = default(string), string failUrl = default(string), CancellationToken cancellationToken = default(CancellationToken))
-            {
-                using (var _result = await operations.PostPaymentUrlDataWithHttpMessagesAsync(clientId, amount, assetId, walletId, firstName, lastName, city, zip, address, country, email, phone, depositOption, okUrl, failUrl, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

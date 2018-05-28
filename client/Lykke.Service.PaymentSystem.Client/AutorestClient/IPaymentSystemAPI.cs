@@ -34,6 +34,52 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         JsonSerializerSettings DeserializationSettings { get; }
 
 
+        /// <param name='clientId'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<PaymentTransactionResponse>> LastWithHttpMessagesAsync(string clientId = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <param name='clientId'>
+        /// </param>
+        /// <param name='amount'>
+        /// </param>
+        /// <param name='assetId'>
+        /// </param>
+        /// <param name='walletId'>
+        /// </param>
+        /// <param name='firstName'>
+        /// </param>
+        /// <param name='lastName'>
+        /// </param>
+        /// <param name='city'>
+        /// </param>
+        /// <param name='zip'>
+        /// </param>
+        /// <param name='address'>
+        /// </param>
+        /// <param name='country'>
+        /// </param>
+        /// <param name='email'>
+        /// </param>
+        /// <param name='phone'>
+        /// </param>
+        /// <param name='okUrl'>
+        /// </param>
+        /// <param name='failUrl'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<PaymentUrlDataResponse>> PaymentUrlWithHttpMessagesAsync(string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string okUrl = default(string), string failUrl = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
         /// <summary>
         /// Checks service is alive
         /// </summary>
@@ -62,55 +108,6 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// The cancellation token.
         /// </param>
         Task<HttpOperationResponse<PaymentMethodsResponse>> GetPaymentMethodsWithHttpMessagesAsync(string clientId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-
-        /// <param name='clientId'>
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<HttpOperationResponse<PaymentTransactionResponse>> GetLastByDateWithHttpMessagesAsync(string clientId = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-
-        /// <param name='clientId'>
-        /// </param>
-        /// <param name='amount'>
-        /// </param>
-        /// <param name='assetId'>
-        /// </param>
-        /// <param name='walletId'>
-        /// </param>
-        /// <param name='firstName'>
-        /// </param>
-        /// <param name='lastName'>
-        /// </param>
-        /// <param name='city'>
-        /// </param>
-        /// <param name='zip'>
-        /// </param>
-        /// <param name='address'>
-        /// </param>
-        /// <param name='country'>
-        /// </param>
-        /// <param name='email'>
-        /// </param>
-        /// <param name='phone'>
-        /// </param>
-        /// <param name='depositOption'>
-        /// Possible values include: 'Unknown', 'BankCard', 'Other'
-        /// </param>
-        /// <param name='okUrl'>
-        /// </param>
-        /// <param name='failUrl'>
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), DepositOption? depositOption = default(DepositOption?), string okUrl = default(string), string failUrl = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

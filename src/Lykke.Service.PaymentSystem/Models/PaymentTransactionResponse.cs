@@ -19,7 +19,6 @@ namespace Lykke.Service.PaymentSystem.Models
         public string Country { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public string DepositOption { get; set; }
         public string OkUrl { get; set; }
         public string FailUrl { get; set; }
 
