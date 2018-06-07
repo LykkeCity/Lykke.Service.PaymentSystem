@@ -45,9 +45,6 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
   </ItemGroup>
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Lykke.Service.PaymentSystem.Core\Lykke.Service.PaymentSystem.Core.csproj" />
     <ProjectReference Include="..\Lykke.Service.PaymentSystem.Services\Lykke.Service.PaymentSystem.Services.csproj" />
   </ItemGroup>
