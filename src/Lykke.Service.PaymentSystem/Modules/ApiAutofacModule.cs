@@ -7,6 +7,7 @@ using Lykke.Service.ClientAccount.Client;
 using Lykke.Service.FeeCalculator.Client;
 using Lykke.HttpClientGenerator;
 using Lykke.Service.PaymentSystem.Core.Services;
+using Lykke.Service.PaymentSystem.Core.Settings;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings.PaymentSystem;
 using Lykke.Service.PaymentSystem.Services;
@@ -23,10 +24,12 @@ namespace Lykke.Service.PaymentSystem.Modules
     public class ApiAutofacModule : Module
     {
         private readonly IReloadingManager<PaymentSystemSettings> _settings;
+        private readonly AppSettings _appSettings;
         private readonly ILog _log;
 
-        public ApiAutofacModule(IReloadingManager<PaymentSystemSettings> settings, ILog log)
+        public ApiAutofacModule(AppSettings appSettings, IReloadingManager<PaymentSystemSettings> settings, ILog log)
         {
+            _appSettings = appSettings;
             _settings = settings;
             _log = log;
         }
@@ -72,14 +75,18 @@ namespace Lykke.Service.PaymentSystem.Modules
                 _settings.CurrentValue.MarginSettings.DataReaderLiveApiKey,
                 "Lykke.Service.PaymentSystem");
 
-            builder.RegisterLykkeServiceClient(_settings.CurrentValue.ClientAccountServiceClient.ServiceUrl);
-            builder.RegisterInstance<IAssetsService>(
-                new AssetsService(new Uri(_settings.CurrentValue.AssetsServices.ServiceUrl)));
+            builder.RegisterLykkeServiceClient(_appSettings.ClientAccountServiceClient.ServiceUrl);
 
             builder.RegisterType<PersonalDataService>().As<IPersonalDataService>()
-                .WithParameter(TypedParameter.From(_settings.CurrentValue.PersonalDataServiceSettings));
+                .WithParameter(TypedParameter.From(_appSettings.PersonalDataServiceClient));
 
-            builder.RegisterFeeCalculatorClient(_settings.CurrentValue.FeeCalculatorServiceClient.ServiceUrl, _log);
+            builder.RegisterFeeCalculatorClient(_appSettings.FeeCalculatorServiceClient.ServiceUrl, _log);
+            
+            services.RegisterAssetsClient(
+                AssetServiceSettings.Create(
+                    new Uri(_appSettings.AssetsServiceClient.ServiceUrl),
+                    TimeSpan.FromMinutes(1)),
+                _log);
 
             builder.Populate(services);
 

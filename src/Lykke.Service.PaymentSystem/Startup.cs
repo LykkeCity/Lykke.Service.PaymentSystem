@@ -5,6 +5,7 @@ using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using AzureStorage.Tables;
 using Common.Log;
+using Lykke.Common.Api.Contract.Responses;
 using Lykke.Common.ApiLibrary.Middleware;
 using Lykke.Common.ApiLibrary.Swagger;
 using Lykke.Logs;
@@ -59,7 +60,7 @@ namespace Lykke.Service.PaymentSystem
 
                 Log = CreateLogWithSlack(services, appSettings);
 
-                var builder = AutofacConfiguration.Register(services, appSettings.Nested(x => x.PaymentSystemService), Log);
+                var builder = AutofacConfiguration.Register(services, appSettings.CurrentValue, appSettings.Nested(x => x.PaymentSystemService), Log);
 
                 ApplicationContainer = builder.Build();
 
@@ -83,7 +84,7 @@ namespace Lykke.Service.PaymentSystem
                 }
 
                 app.UseLykkeForwardedHeaders();
-                app.UseLykkeMiddleware("PaymentSystem", ex => new { Message = "Technical problem" });
+                app.UseLykkeMiddleware("PaymentSystem", ex => ErrorResponse.Create("Technical problem"));
 
                 app.UseMvc();
                 app.UseSwagger(c =>
