@@ -5,8 +5,7 @@ using Common.Log;
 using Lykke.Service.Assets.Client;
 using Lykke.Service.ClientAccount.Client;
 using Lykke.Service.FeeCalculator.Client;
-using Lykke.Service.PaymentSystem.AzureRepositories;
-using Lykke.Service.PaymentSystem.Core.Repositories;
+using Lykke.HttpClientGenerator;
 using Lykke.Service.PaymentSystem.Core.Services;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings.PaymentSystem;
@@ -65,7 +64,7 @@ namespace Lykke.Service.PaymentSystem.Modules
             builder.RegisterInstance(_settings.CurrentValue.PaymentSettings);
 
             IServiceCollection services = new ServiceCollection();
-
+            
             services.RegisterMtDataReaderClientsPair(
                 _settings.CurrentValue.MarginSettings.DataReaderDemoApiUrl,
                 _settings.CurrentValue.MarginSettings.DataReaderLiveApiUrl,
