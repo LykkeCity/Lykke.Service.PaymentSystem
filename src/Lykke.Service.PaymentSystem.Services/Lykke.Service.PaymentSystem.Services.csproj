@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Lykke.Service.PaymentSystem.Services</AssemblyName>
+    <RootNamespace>Lykke.Service.PaymentSystem.Services</RootNamespace>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.0" />
+    <PackageReference Include="Lykke.Common" Version="6.8.4" />
+    <PackageReference Include="Lykke.Contracts" Version="1.0.50" />
+    <PackageReference Include="Lykke.MarginTrading.Backend.Contracts" Version="1.5.2" />
+    <PackageReference Include="Lykke.Payments.Client" Version="1.0.8" />
+    <PackageReference Include="Lykke.Service.ClientAccount.Client" Version="1.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lykke.Service.PaymentSystem.AzureRepositories\Lykke.Service.PaymentSystem.AzureRepositories.csproj" />
+    <ProjectReference Include="..\Lykke.Service.PaymentSystem.Core\Lykke.Service.PaymentSystem.Core.csproj" />
+  </ItemGroup>
+</Project>

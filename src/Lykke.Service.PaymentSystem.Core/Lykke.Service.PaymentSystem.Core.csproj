@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Lykke.Service.PaymentSystem.Core</AssemblyName>
+    <RootNamespace>Lykke.Service.PaymentSystem.Core</RootNamespace>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Lykke.Common" Version="6.8.4" />
+    <PackageReference Include="Lykke.Contracts" Version="1.0.50" />
+    <PackageReference Include="Lykke.Service.Assets.Client" Version="4.0.1" />
+    <PackageReference Include="Lykke.Service.ClientAccount.Client" Version="1.4.1" />
+    <PackageReference Include="Lykke.Service.FeeCalculator.Client" Version="2.1.4" />
+    <PackageReference Include="Lykke.SettingsReader" Version="2.4.0" />
+    <PackageReference Include="Lykke.Service.PersonalData" Version="1.0.77" />
+  </ItemGroup>
+</Project>
