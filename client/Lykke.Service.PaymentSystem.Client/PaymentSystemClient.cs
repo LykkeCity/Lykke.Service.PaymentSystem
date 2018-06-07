@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Log;
@@ -24,7 +25,7 @@ namespace Lykke.Service.PaymentSystem.Client
             if (string.IsNullOrWhiteSpace(serviceUrl))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(serviceUrl));
 
-            _service = new PaymentSystemAPI(new Uri(serviceUrl));
+            _service = new PaymentSystemAPI(new Uri(serviceUrl), new HttpClient());
         }
 
         /// <summary>
