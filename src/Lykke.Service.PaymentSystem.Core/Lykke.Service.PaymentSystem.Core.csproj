@@ -7,7 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Lykke.Common" Version="6.8.4" />
-    <PackageReference Include="Lykke.Contracts" Version="1.0.50" />
+    <PackageReference Include="Lykke.Contracts" Version="1.0.51" />
     <PackageReference Include="Lykke.Service.Assets.Client" Version="4.0.1" />
     <PackageReference Include="Lykke.Service.ClientAccount.Client" Version="1.4.1" />
     <PackageReference Include="Lykke.Service.FeeCalculator.Client" Version="2.1.4" />

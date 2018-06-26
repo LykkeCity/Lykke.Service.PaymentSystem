@@ -687,6 +687,8 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// </param>
         /// <param name='failUrl'>
         /// </param>
+        /// <param name='cancelUrl'>
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -702,7 +704,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), DepositOption? depositOption = default(DepositOption?), string okUrl = default(string), string failUrl = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), DepositOption? depositOption = default(DepositOption?), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -726,6 +728,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
                 tracingParameters.Add("depositOption", depositOption);
                 tracingParameters.Add("okUrl", okUrl);
                 tracingParameters.Add("failUrl", failUrl);
+                tracingParameters.Add("cancelUrl", cancelUrl);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "PostPaymentUrlData", tracingParameters);
             }
@@ -792,6 +795,10 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             if (failUrl != null)
             {
                 _queryParameters.Add(string.Format("FailUrl={0}", System.Uri.EscapeDataString(failUrl)));
+            }
+            if (cancelUrl != null)
+            {
+                _queryParameters.Add(string.Format("CancelUrl={0}", System.Uri.EscapeDataString(cancelUrl)));
             }
             if (_queryParameters.Count > 0)
             {

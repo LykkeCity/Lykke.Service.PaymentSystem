@@ -10,6 +10,7 @@ using Lykke.Service.PaymentSystem.Core.Domain.PaymentUrlData;
 using Lykke.Service.PaymentSystem.Core.Repositories;
 using Lykke.Service.PaymentSystem.Core.Services;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings.PaymentSystem;
+using Newtonsoft.Json;
 
 namespace Lykke.Service.PaymentSystem.Services.Services
 {
@@ -79,6 +80,7 @@ namespace Lykke.Service.PaymentSystem.Services.Services
                 PaymentUrl = urlData.PaymentUrl,
                 OkUrl = urlData.OkUrl,
                 FailUrl = urlData.FailUrl,
+                CancelUrl = JsonConvert.DeserializeObject<OtherPaymentInfo>(info).CancelUrl,
                 ReloadRegexp = urlData.ReloadRegexp,
                 UrlsRegexp = urlData.UrlsRegexp,
                 ErrorMessage = urlData.ErrorMessage,

@@ -22,11 +22,12 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// <summary>
         /// Initializes a new instance of the PaymentUrlDataResponse class.
         /// </summary>
-        public PaymentUrlDataResponse(string url = default(string), string okUrl = default(string), string failUrl = default(string))
+        public PaymentUrlDataResponse(string url = default(string), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string))
         {
             Url = url;
             OkUrl = okUrl;
             FailUrl = failUrl;
+            CancelUrl = cancelUrl;
             CustomInit();
         }
 
@@ -49,6 +50,11 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "FailUrl")]
         public string FailUrl { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "CancelUrl")]
+        public string CancelUrl { get; set; }
 
     }
 }

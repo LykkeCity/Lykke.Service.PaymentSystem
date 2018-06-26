@@ -22,6 +22,7 @@ namespace Lykke.Service.PaymentSystem.Models
         public DepositOption DepositOption { get; set; }
         public string OkUrl { get; set; }
         public string FailUrl { get; set; }
+        public string CancelUrl { get; set; }
 
         public string GetCountryIso3Code()
         {
