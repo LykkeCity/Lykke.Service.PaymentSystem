@@ -48,9 +48,6 @@
     <ProjectReference Include="..\Lykke.Service.PaymentSystem.Core\Lykke.Service.PaymentSystem.Core.csproj" />
     <ProjectReference Include="..\Lykke.Service.PaymentSystem.Services\Lykke.Service.PaymentSystem.Services.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Settings\" />
-  </ItemGroup>
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
     <ItemGroup>
       <DocFile Include="$(OutputPath)$(AssemblyName).xml" />

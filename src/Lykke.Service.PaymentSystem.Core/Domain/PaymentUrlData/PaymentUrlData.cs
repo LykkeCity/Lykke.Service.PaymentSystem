@@ -7,6 +7,7 @@ namespace Lykke.Service.PaymentSystem.Core.Domain.PaymentUrlData
         public string PaymentUrl { get; set; }
         public string OkUrl { get; set; }
         public string FailUrl { get; set; }
+        public string CancelUrl { get; set; }
         public string ReloadRegexp { get; set; }
         public string UrlsRegexp { get; set; }
         public string ErrorMessage { get; set; }

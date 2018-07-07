@@ -46,6 +46,7 @@ namespace Lykke.Service.PaymentSystem.Client
             DepositOption depositOption,
             string okUrl,
             string failUrl,
+            string cancelUrl,
             CancellationToken cancellationToken = default(CancellationToken));
 
 

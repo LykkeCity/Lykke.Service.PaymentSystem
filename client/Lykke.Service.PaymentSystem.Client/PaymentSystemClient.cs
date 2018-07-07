@@ -65,10 +65,11 @@ namespace Lykke.Service.PaymentSystem.Client
             DepositOption depositOption, 
             string okUrl, 
             string failUrl, 
+            string cancelUrl, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
             return await _service.PostPaymentUrlDataAsync(clientId, amount, assetId, walletId, firstName, lastName,
-                city, zip, address, country, email, phone, depositOption, okUrl, failUrl, cancellationToken);
+                city, zip, address, country, email, phone, depositOption, okUrl, failUrl, cancelUrl, cancellationToken);
         }
 
         /// <summary>

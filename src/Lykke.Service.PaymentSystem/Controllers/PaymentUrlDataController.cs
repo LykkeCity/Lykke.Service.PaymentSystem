@@ -92,7 +92,8 @@ namespace Lykke.Service.PaymentSystem.Controllers
                     phoneNumberE164,
                     pd.DateOfBirth?.ToString(formatOfDateOfBirth),
                     model.OkUrl,
-                    model.FailUrl)
+                    model.FailUrl,
+                    model.CancelUrl)
                 .ToJson();
 
             var bankCardsFee = await _feeCalculatorClient.GetBankCardFees();
@@ -166,7 +167,8 @@ namespace Lykke.Service.PaymentSystem.Controllers
             {
                 Url = urlData.PaymentUrl,
                 OkUrl = urlData.OkUrl,
-                FailUrl = urlData.FailUrl
+                FailUrl = urlData.FailUrl,
+                CancelUrl = urlData.CancelUrl,
             };
 
             return Ok(result);
