@@ -7,7 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.0" />
-    <PackageReference Include="Lykke.Common" Version="7.0.2" />
     <PackageReference Include="Lykke.Contracts" Version="1.0.51" />
     <PackageReference Include="Lykke.MarginTrading.Backend.Contracts" Version="1.5.2" />
     <PackageReference Include="Lykke.Payments.Client" Version="1.0.8" />
