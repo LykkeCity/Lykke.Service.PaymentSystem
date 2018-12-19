@@ -7,6 +7,8 @@ namespace Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings
         [AzureTableCheck]
         public string LogsConnString { get; set; }
         [AzureTableCheck]
+        public string GlobalSettingsConnString { get; set; }
+        [AzureTableCheck]
         public string ClientPersonalInfoConnString { get; set; }
     }
 }
