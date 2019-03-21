@@ -4,6 +4,7 @@
     {
         public CreditVouchersSettings CreditVouchers { get; set; }
         public FxpaygateSettings Fxpaygate { get; set; }
+        public EasyPaymentGatewaySettings EasyPaymentGateway { get; set; }
         public string LegalEntity { get; set; }
     }
 }

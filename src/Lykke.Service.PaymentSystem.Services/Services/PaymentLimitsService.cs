@@ -10,11 +10,13 @@ namespace Lykke.Service.PaymentSystem.Services.Services
     {
         private readonly CreditVouchersSettings _creditVouchersSettings;
         private readonly FxpaygateSettings _fxpaygateSettings;
+        private readonly EasyPaymentGatewaySettings _easyPaymentGatewaySettings;
 
         public PaymentLimitsService(PaymentSettings paymentSettings)
         {
             _creditVouchersSettings = paymentSettings.CreditVouchers;
             _fxpaygateSettings = paymentSettings.Fxpaygate;
+            _easyPaymentGatewaySettings = paymentSettings.EasyPaymentGateway;
         }
 
         public Task<IPaymentLimits> GetPaymentLimitsAsync()
@@ -24,7 +26,9 @@ namespace Lykke.Service.PaymentSystem.Services.Services
                 CreditVouchersMaxValue = _creditVouchersSettings.MaxAmount,
                 CreditVouchersMinValue = _creditVouchersSettings.MinAmount,
                 FxpaygateMaxValue = _fxpaygateSettings.MaxAmount,
-                FxpaygateMinValue = _fxpaygateSettings.MinAmount
+                FxpaygateMinValue = _fxpaygateSettings.MinAmount,
+                EasyPaymentGatewayMinValue = _easyPaymentGatewaySettings.MinAmount,
+                EasyPaymentGatewayMaxValue = _easyPaymentGatewaySettings.MaxAmount
             });
         }
     }
