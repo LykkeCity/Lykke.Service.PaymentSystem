@@ -26,7 +26,8 @@ namespace Lykke.Service.PaymentSystem.Models
         public static PaymentTransactionResponse Create(IPaymentTransaction lastPaymentTransaction, IPersonalData personalData)
         {
             if (lastPaymentTransaction.PaymentSystem != CashInPaymentSystem.CreditVoucher
-                && lastPaymentTransaction.PaymentSystem != CashInPaymentSystem.Fxpaygate)
+                && lastPaymentTransaction.PaymentSystem != CashInPaymentSystem.Fxpaygate
+                && lastPaymentTransaction.PaymentSystem != CashInPaymentSystem.EasyPaymentGateway)
             {
                 throw new ArgumentException("Credit voucher payment system is expect for transactionID:" + lastPaymentTransaction.Id);
             }

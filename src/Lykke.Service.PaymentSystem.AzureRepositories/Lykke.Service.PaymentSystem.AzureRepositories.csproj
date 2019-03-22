@@ -6,8 +6,8 @@
     <Version>1.0.0</Version>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="7.0.0" />
-    <PackageReference Include="Lykke.AzureStorage" Version="8.13.3" />
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="Lykke.AzureStorage" Version="8.13.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lykke.Service.PaymentSystem.Core\Lykke.Service.PaymentSystem.Core.csproj" />

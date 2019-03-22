@@ -6,6 +6,7 @@
 
 namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
 {
+    using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
@@ -22,7 +23,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// <summary>
         /// Initializes a new instance of the PaymentUrlDataResponse class.
         /// </summary>
-        public PaymentUrlDataResponse(string url = default(string), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string))
+        public PaymentUrlDataResponse(string url, string okUrl, string failUrl, string cancelUrl)
         {
             Url = url;
             OkUrl = okUrl;
@@ -56,5 +57,30 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         [JsonProperty(PropertyName = "CancelUrl")]
         public string CancelUrl { get; set; }
 
+        /// <summary>
+        /// Validate the object.
+        /// </summary>
+        /// <exception cref="ValidationException">
+        /// Thrown if validation fails
+        /// </exception>
+        public virtual void Validate()
+        {
+            if (Url == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Url");
+            }
+            if (OkUrl == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "OkUrl");
+            }
+            if (FailUrl == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "FailUrl");
+            }
+            if (CancelUrl == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "CancelUrl");
+            }
+        }
     }
 }

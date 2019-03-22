@@ -6,8 +6,8 @@
     <Version>1.0.0</Version>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="7.0.0" />
-    <PackageReference Include="Lykke.Contracts" Version="1.0.51" />
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="Lykke.Contracts" Version="1.0.53" />
     <PackageReference Include="Lykke.MarginTrading.Backend.Contracts" Version="1.5.2" />
     <PackageReference Include="Lykke.Payments.Client" Version="1.0.8" />
     <PackageReference Include="Lykke.Service.ClientAccount.Client" Version="1.4.1" />

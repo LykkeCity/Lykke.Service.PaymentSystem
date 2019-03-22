@@ -16,7 +16,8 @@ namespace Lykke.Service.PaymentSystem.Core.Extensions
         public static readonly ImmutableDictionary<CashInPaymentSystem, Type> PsAndOtherInfoLinks = new Dictionary<CashInPaymentSystem, Type>
         {
             [CashInPaymentSystem.CreditVoucher] = typeof(OtherPaymentInfo),
-            [CashInPaymentSystem.Fxpaygate] = typeof(OtherPaymentInfo)
+            [CashInPaymentSystem.Fxpaygate] = typeof(OtherPaymentInfo),
+            [CashInPaymentSystem.EasyPaymentGateway] = typeof(OtherPaymentInfo)
         }
         .ToImmutableDictionary();
     }

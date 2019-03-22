@@ -6,6 +6,7 @@
 
 namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
 {
+    using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Collections;
     using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// <summary>
         /// Initializes a new instance of the PaymentMethod class.
         /// </summary>
-        public PaymentMethod(bool available, string name = default(string), IList<string> assets = default(IList<string>))
+        public PaymentMethod(string name, IList<string> assets, bool available)
         {
             Name = name;
             Assets = assets;
@@ -55,11 +56,19 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
+            if (Name == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Name");
+            }
+            if (Assets == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Assets");
+            }
         }
     }
 }

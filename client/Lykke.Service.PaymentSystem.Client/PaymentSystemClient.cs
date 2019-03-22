@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Log;
 using Lykke.Service.PaymentSystem.Client.AutorestClient;
 using Lykke.Service.PaymentSystem.Client.AutorestClient.Models;
 
@@ -68,8 +66,7 @@ namespace Lykke.Service.PaymentSystem.Client
             string cancelUrl, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await _service.PostPaymentUrlDataAsync(clientId, amount, assetId, walletId, firstName, lastName,
-                city, zip, address, country, email, phone, depositOption, okUrl, failUrl, cancelUrl, cancellationToken);
+            return await _service.PostPaymentUrlDataAsync(amount ?? 0, depositOption, clientId, assetId, walletId, firstName, lastName, city, zip, address, country, email, phone, okUrl, failUrl, cancelUrl, cancellationToken);
         }
 
         /// <summary>

@@ -67,7 +67,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
             switch (model.DepositOption)
             {
                 case DepositOption.BankCard:
-                    paymentSystem = CashInPaymentSystem.Fxpaygate;
+                    paymentSystem = CashInPaymentSystem.EasyPaymentGateway;
                     break;
                 case DepositOption.Other:
                     paymentSystem = CashInPaymentSystem.CreditVoucher;

@@ -41,11 +41,12 @@ namespace Lykke.Service.PaymentSystem.Controllers
                 return BadRequest("A user with such an clientId does not exist.");
             }
 
-            var isCreditVoucherOrFxpaygate = lastPaymentTransaction != null
+            var isSupportedPaymentSystem = lastPaymentTransaction != null
                     && (lastPaymentTransaction.PaymentSystem == CashInPaymentSystem.CreditVoucher
-                        || lastPaymentTransaction.PaymentSystem == CashInPaymentSystem.Fxpaygate);
+                        || lastPaymentTransaction.PaymentSystem == CashInPaymentSystem.Fxpaygate
+                        || lastPaymentTransaction.PaymentSystem == CashInPaymentSystem.EasyPaymentGateway);
 
-            var result = isCreditVoucherOrFxpaygate
+            var result = isSupportedPaymentSystem
                 ? PaymentTransactionResponse.Create(lastPaymentTransaction, personalData)
                 : PaymentTransactionResponse.Create(personalData);
 

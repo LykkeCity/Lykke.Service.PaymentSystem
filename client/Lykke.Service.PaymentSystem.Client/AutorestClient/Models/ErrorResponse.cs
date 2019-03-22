@@ -6,6 +6,7 @@
 
 namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
 {
+    using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Collections;
     using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// <summary>
         /// Initializes a new instance of the ErrorResponse class.
         /// </summary>
-        public ErrorResponse(string errorMessage = default(string), IDictionary<string, IList<string>> modelErrors = default(IDictionary<string, IList<string>>))
+        public ErrorResponse(string errorMessage, IDictionary<string, IList<string>> modelErrors)
         {
             ErrorMessage = errorMessage;
             ModelErrors = modelErrors;
@@ -46,5 +47,22 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         [JsonProperty(PropertyName = "ModelErrors")]
         public IDictionary<string, IList<string>> ModelErrors { get; set; }
 
+        /// <summary>
+        /// Validate the object.
+        /// </summary>
+        /// <exception cref="ValidationException">
+        /// Thrown if validation fails
+        /// </exception>
+        public virtual void Validate()
+        {
+            if (ErrorMessage == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "ErrorMessage");
+            }
+            if (ModelErrors == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "ModelErrors");
+            }
+        }
     }
 }

@@ -73,9 +73,12 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// </param>
         Task<HttpOperationResponse<PaymentTransactionResponse>> GetLastByDateWithHttpMessagesAsync(string clientId = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
-        /// <param name='clientId'>
-        /// </param>
         /// <param name='amount'>
+        /// </param>
+        /// <param name='depositOption'>
+        /// Possible values include: 'Unknown', 'BankCard', 'Other'
+        /// </param>
+        /// <param name='clientId'>
         /// </param>
         /// <param name='assetId'>
         /// </param>
@@ -97,9 +100,6 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// </param>
         /// <param name='phone'>
         /// </param>
-        /// <param name='depositOption'>
-        /// Possible values include: 'Unknown', 'BankCard', 'Other'
-        /// </param>
         /// <param name='okUrl'>
         /// </param>
         /// <param name='failUrl'>
@@ -112,7 +112,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), DepositOption? depositOption = default(DepositOption?), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(double amount, DepositOption depositOption, string clientId = default(string), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

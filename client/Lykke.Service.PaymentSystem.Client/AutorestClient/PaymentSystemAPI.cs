@@ -37,6 +37,19 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// <summary>
         /// Initializes a new instance of the PaymentSystemAPI class.
         /// </summary>
+        /// <param name='httpClient'>
+        /// HttpClient to be used
+        /// </param>
+        /// <param name='disposeHttpClient'>
+        /// True: will dispose the provided httpClient on calling PaymentSystemAPI.Dispose(). False: will not dispose provided httpClient</param>
+        public PaymentSystemAPI(HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the PaymentSystemAPI class.
+        /// </summary>
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
@@ -656,9 +669,12 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             return _result;
         }
 
-        /// <param name='clientId'>
-        /// </param>
         /// <param name='amount'>
+        /// </param>
+        /// <param name='depositOption'>
+        /// Possible values include: 'Unknown', 'BankCard', 'Other'
+        /// </param>
+        /// <param name='clientId'>
         /// </param>
         /// <param name='assetId'>
         /// </param>
@@ -679,9 +695,6 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// <param name='email'>
         /// </param>
         /// <param name='phone'>
-        /// </param>
-        /// <param name='depositOption'>
-        /// Possible values include: 'Unknown', 'BankCard', 'Other'
         /// </param>
         /// <param name='okUrl'>
         /// </param>
@@ -704,7 +717,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(string clientId = default(string), double? amount = default(double?), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), DepositOption? depositOption = default(DepositOption?), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(double amount, DepositOption depositOption, string clientId = default(string), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -740,10 +753,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             {
                 _queryParameters.Add(string.Format("ClientId={0}", System.Uri.EscapeDataString(clientId)));
             }
-            if (amount != null)
-            {
-                _queryParameters.Add(string.Format("Amount={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(amount, SerializationSettings).Trim('"'))));
-            }
+            _queryParameters.Add(string.Format("Amount={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(amount, SerializationSettings).Trim('"'))));
             if (assetId != null)
             {
                 _queryParameters.Add(string.Format("AssetId={0}", System.Uri.EscapeDataString(assetId)));
@@ -784,10 +794,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             {
                 _queryParameters.Add(string.Format("Phone={0}", System.Uri.EscapeDataString(phone)));
             }
-            if (depositOption != null)
-            {
-                _queryParameters.Add(string.Format("DepositOption={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(depositOption, SerializationSettings).Trim('"'))));
-            }
+            _queryParameters.Add(string.Format("DepositOption={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(depositOption, SerializationSettings).Trim('"'))));
             if (okUrl != null)
             {
                 _queryParameters.Add(string.Format("OkUrl={0}", System.Uri.EscapeDataString(okUrl)));

@@ -1,7 +1,6 @@
 ﻿using System;
 using Common;
 using Lykke.Service.PaymentSystem.Core.Enums;
-using Newtonsoft.Json;
 
 namespace Lykke.Service.PaymentSystem.Models
 {

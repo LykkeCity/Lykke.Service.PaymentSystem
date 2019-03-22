@@ -20,6 +20,7 @@ namespace Lykke.Service.PaymentSystem.Services.Services
         private readonly ILegalEntityService _legalEntityService;
         private readonly FxpaygateSettings _fxpaygateSettings;
         private readonly CreditVouchersSettings _creditVouchersSettings;
+        private readonly EasyPaymentGatewaySettings _easyPaymentGatewaySettings;
         private readonly IIdentityRepository _identityRepository;
 
         public PaymentUrlDataService(
@@ -33,6 +34,7 @@ namespace Lykke.Service.PaymentSystem.Services.Services
             _identityRepository = identityRepository;
             _fxpaygateSettings = paymentSettings.Fxpaygate;
             _creditVouchersSettings = paymentSettings.CreditVouchers;
+            _easyPaymentGatewaySettings = paymentSettings.EasyPaymentGateway;
         }
 
         public async Task<PaymentUrlData> GetUrlDataAsync(
@@ -55,13 +57,13 @@ namespace Lykke.Service.PaymentSystem.Services.Services
             {
                 var legalEntity = await _legalEntityService.GetLegalEntityAsync(walletId);
 
-                cashInPaymentSystem = CashInPaymentSystem.Fxpaygate;
-                serviceUrl = SelectFxpaygateService(OwnerType.Mt, legalEntity);
+                cashInPaymentSystem = CashInPaymentSystem.EasyPaymentGateway;
+                serviceUrl = SelectEasyPaymentGateWayService(OwnerType.Mt, legalEntity);
             }
-            else if (IsFxpaygateAndSpot(paymentSystem, assetId, countryIso3Code))
+            else if (IsEasyPaymentGatewayAndSpot(paymentSystem, assetId, countryIso3Code))
             {
-                cashInPaymentSystem = CashInPaymentSystem.Fxpaygate;
-                serviceUrl = SelectFxpaygateService(OwnerType.Spot);
+                cashInPaymentSystem = CashInPaymentSystem.EasyPaymentGateway;
+                serviceUrl = SelectEasyPaymentGateWayService(OwnerType.Spot);
             }
 
             if (!IsPaymentSystemSupported(cashInPaymentSystem, assetId))
@@ -102,12 +104,14 @@ namespace Lykke.Service.PaymentSystem.Services.Services
                     return _creditVouchersSettings.SupportedCurrencies?.Contains(assetId) ?? assetId == LykkeConstants.UsdAssetId;
                 case CashInPaymentSystem.Fxpaygate:
                     return _fxpaygateSettings.SupportedCurrencies?.Contains(assetId) ?? assetId == LykkeConstants.UsdAssetId;
+                case CashInPaymentSystem.EasyPaymentGateway:
+                    return _easyPaymentGatewaySettings.SupportedCurrencies?.Contains(assetId) ?? assetId == LykkeConstants.UsdAssetId;
                 default:
                     return false;
             }
         }
 
-        private bool IsFxpaygateAndSpot(string clientPaymentSystem, string assetId, string isoCountryCode)
+        private bool IsEasyPaymentGatewayAndSpot(string clientPaymentSystem, string assetId, string isoCountryCode)
         {
             var byClient = CardPaymentSystem.Unknown;
             var hasClientFixedSystem = false;
@@ -115,17 +119,17 @@ namespace Lykke.Service.PaymentSystem.Services.Services
             if (!string.IsNullOrWhiteSpace(clientPaymentSystem))
                 hasClientFixedSystem = Enum.TryParse(clientPaymentSystem, out byClient);
 
-            return hasClientFixedSystem && byClient == CardPaymentSystem.Fxpaygate
+            return hasClientFixedSystem && byClient == CardPaymentSystem.EasyPaymentGateway
                    || (!hasClientFixedSystem || byClient != CardPaymentSystem.CreditVoucher)
-                   && _fxpaygateSettings.Currencies.Contains(assetId)
-                   && _fxpaygateSettings.Countries.Contains(isoCountryCode);
+                   && _easyPaymentGatewaySettings.SupportedCurrencies.Contains(assetId)
+                   && _easyPaymentGatewaySettings.Countries.Contains(isoCountryCode);
         }
 
-        private string SelectFxpaygateService(OwnerType owner, string legalEntity = null)
+        private string SelectEasyPaymentGateWayService(OwnerType owner, string legalEntity = null)
         {
             var key = owner + (string.IsNullOrEmpty(legalEntity) ? "" : $"_{legalEntity}");
 
-            if (!_fxpaygateSettings.ServiceUrls.TryGetValue(key, out var result))
+            if (!_easyPaymentGatewaySettings.ServiceUrls.TryGetValue(key, out var result))
             {
                 throw new NotSupportedException($"Owner {owner} is not supported by FxPaygate");
             }

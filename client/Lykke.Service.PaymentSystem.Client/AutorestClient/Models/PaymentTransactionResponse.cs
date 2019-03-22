@@ -6,6 +6,7 @@
 
 namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
 {
+    using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
@@ -22,7 +23,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// <summary>
         /// Initializes a new instance of the PaymentTransactionResponse class.
         /// </summary>
-        public PaymentTransactionResponse(double amount, string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string depositOption = default(string), string okUrl = default(string), string failUrl = default(string))
+        public PaymentTransactionResponse(double amount, string assetId, string walletId, string firstName, string lastName, string city, string zip, string address, string country, string email, string phone, string depositOption, string okUrl, string failUrl)
         {
             Amount = amount;
             AssetId = assetId;
@@ -119,12 +120,63 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient.Models
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
-            //Nothing to validate
+            if (AssetId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "AssetId");
+            }
+            if (WalletId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "WalletId");
+            }
+            if (FirstName == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "FirstName");
+            }
+            if (LastName == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "LastName");
+            }
+            if (City == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "City");
+            }
+            if (Zip == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Zip");
+            }
+            if (Address == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Address");
+            }
+            if (Country == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Country");
+            }
+            if (Email == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Email");
+            }
+            if (Phone == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Phone");
+            }
+            if (DepositOption == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "DepositOption");
+            }
+            if (OkUrl == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "OkUrl");
+            }
+            if (FailUrl == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "FailUrl");
+            }
         }
     }
 }

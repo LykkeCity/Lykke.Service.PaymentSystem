@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
-using Common.Log;
 using Lykke.Contracts.Payments;
 using Lykke.Service.ClientAccount.Client;
 using Lykke.Service.PaymentSystem.Core.Services;
@@ -37,8 +36,8 @@ namespace Lykke.Service.PaymentSystem.Controllers
             var isOnMaintenance = await _appGlobalSettingsService.IsOnMaintenanceAsync();
 
             var result = new PaymentMethodsResponse
-            {
-                PaymentMethods = new[]
+            {                     
+                PaymentMethods = new[]    
                 {
                     new PaymentMethod
                     {
@@ -51,6 +50,12 @@ namespace Lykke.Service.PaymentSystem.Controllers
                         Name = CashInPaymentSystem.CreditVoucher.ToString(),
                         Assets = _paymentSettings.CreditVouchers.SupportedCurrencies,
                         Available = !isOnMaintenance
+                    },
+                    new PaymentMethod
+                    {
+                        Name = CashInPaymentSystem.EasyPaymentGateway.ToString(),
+                        Assets = _paymentSettings.EasyPaymentGateway.SupportedCurrencies,
+                        Available = !depositViaCreditCardBlocked && !isOnMaintenance
                     }
                 }
             };
