@@ -55,6 +55,8 @@ namespace Lykke.Service.PaymentSystem.Controllers
         [ProducesResponseType(typeof(PaymentUrlDataResponse), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Post(PaymentUrlDataRequest model)
         {
+            await _log.WriteWarningAsync("Test log", "", "Incoming request for payment url data");
+
             if (string.IsNullOrWhiteSpace(model.AssetId))
                 model.AssetId = LykkeConstants.UsdAssetId;
 
