@@ -14,6 +14,7 @@ using Lykke.Service.PaymentSystem.Core.Enums;
 using Lykke.Service.PaymentSystem.Core.Services;
 using Lykke.Service.PaymentSystem.Models;
 using Lykke.Service.PersonalData.Contract;
+using Lykke.Common.Api.Contract.Responses;
 
 namespace Lykke.Service.PaymentSystem.Controllers
 {
@@ -174,6 +175,24 @@ namespace Lykke.Service.PaymentSystem.Controllers
             };
 
             return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("SourceClientId")]
+        [SwaggerOperation("GetSourceClientId")]
+        [ProducesResponseType(typeof(SourceClientInfoResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> GetSourceClientId(string walletId, string clientPaymentSystem)
+        {
+            if (string.IsNullOrEmpty(walletId))
+                return BadRequest(ErrorResponse.Create($"{nameof(walletId)} id can't be empty"));
+
+            if (string.IsNullOrEmpty(clientPaymentSystem))
+                return BadRequest(ErrorResponse.Create($"{nameof(clientPaymentSystem)} id can't be empty"));
+
+            var clientId = await _paymentUrlDataService.GetSourceClientIdAsync(walletId, clientPaymentSystem);
+
+            return Ok(new SourceClientInfoResponse { SourceClientId = clientId });
         }
     }
 }

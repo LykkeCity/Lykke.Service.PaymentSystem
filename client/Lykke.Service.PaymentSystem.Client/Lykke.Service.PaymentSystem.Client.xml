@@ -103,6 +103,18 @@
             The cancellation token.
             </param>
         </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI.GetSourceClientIdWithHttpMessagesAsync(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <param name='walletId'>
+            </param>
+            <param name='clientPaymentSystem'>
+            </param>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
         <member name="T:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.CashInPaymentSystem">
             <summary>
             Defines values for CashInPaymentSystem.
@@ -440,6 +452,28 @@
             Thrown if validation fails
             </exception>
         </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.SourceClientInfoResponse.#ctor">
+            <summary>
+            Initializes a new instance of the SourceClientInfoResponse class.
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.SourceClientInfoResponse.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the SourceClientInfoResponse class.
+            </summary>
+        </member>
+        <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.SourceClientInfoResponse.SourceClientId">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.Models.SourceClientInfoResponse.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
         <member name="P:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.BaseUri">
             <summary>
             The base URI of the service.
@@ -651,6 +685,27 @@
             A response object containing the response body and response headers.
             </return>
         </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPI.GetSourceClientIdWithHttpMessagesAsync(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <param name='walletId'>
+            </param>
+            <param name='clientPaymentSystem'>
+            </param>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.HttpOperationException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
         <member name="T:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions">
             <summary>
             Extension methods for PaymentSystemAPI.
@@ -801,6 +856,27 @@
             The cancellation token.
             </param>
         </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.GetSourceClientId(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String,System.String)">
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='walletId'>
+            </param>
+            <param name='clientPaymentSystem'>
+            </param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.AutorestClient.PaymentSystemAPIExtensions.GetSourceClientIdAsync(Lykke.Service.PaymentSystem.Client.AutorestClient.IPaymentSystemAPI,System.String,System.String,System.Threading.CancellationToken)">
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='walletId'>
+            </param>
+            <param name='clientPaymentSystem'>
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
         <member name="T:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient">
             <summary>
             PaymentSystemClient
@@ -849,6 +925,15 @@
             <param name="clientId">ClientId</param>
             <param name="cancellationToken">CancellationToken</param>
             <returns>List PaymentMethods</returns>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.IPaymentSystemClient.GetSourceClientIdAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get payment system source client id
+            </summary>
+            <param name="walletId">The wallet id</param>
+            <param name="clientPaymentSystem">The client payment system name</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
         </member>
         <member name="T:Lykke.Service.PaymentSystem.Client.PaymentSystemClient">
             <summary>
@@ -917,6 +1002,15 @@
             Inner dispose
             </summary>
             <param name="disposing">disposing flag</param>
+        </member>
+        <member name="M:Lykke.Service.PaymentSystem.Client.PaymentSystemClient.GetSourceClientIdAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get source client id
+            </summary>
+            <param name="walletId">The wallet id</param>
+            <param name="clientPaymentSystem">The client payment system name</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

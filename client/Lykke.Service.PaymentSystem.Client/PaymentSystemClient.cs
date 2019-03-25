@@ -122,5 +122,29 @@ namespace Lykke.Service.PaymentSystem.Client
                 _service = null;
             }
         }
+
+        /// <summary>
+        /// Get source client id
+        /// </summary>
+        /// <param name="walletId">The wallet id</param>
+        /// <param name="clientPaymentSystem">The client payment system name</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<SourceClientInfoResponse> GetSourceClientIdAsync(string walletId, string clientPaymentSystem, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var response = await _service.GetSourceClientIdAsync(walletId, clientPaymentSystem, cancellationToken);
+
+            if (response is ErrorResponse error)
+            {
+                throw new Exception(error.ErrorMessage);
+            }
+
+            if (response is SourceClientInfoResponse result)
+            {
+                return result;
+            }
+
+            throw new Exception("Unexpected API response");
+        }
     }
 }

@@ -10,6 +10,7 @@ using Lykke.Service.PaymentSystem.Core.Domain.PaymentUrlData;
 using Lykke.Service.PaymentSystem.Core.Repositories;
 using Lykke.Service.PaymentSystem.Core.Services;
 using Lykke.Service.PaymentSystem.Core.Settings.ServiceSettings.PaymentSystem;
+using Lykke.Service.PaymentSystem.Services.Domain;
 using Newtonsoft.Json;
 
 namespace Lykke.Service.PaymentSystem.Services.Services
@@ -47,32 +48,10 @@ namespace Lykke.Service.PaymentSystem.Services.Services
             string countryIso3Code, 
             string info)
         {
-
-            var cashInPaymentSystem = CashInPaymentSystem.CreditVoucher;
-            var serviceUrl = SelectCreditVouchersService();
-
-            var ownerType = await _ownerTypeService.GetOwnerTypeAsync(walletId);
-
-            if (ownerType == OwnerType.Mt)
-            {
-                var legalEntity = await _legalEntityService.GetLegalEntityAsync(walletId);
-
-                cashInPaymentSystem = CashInPaymentSystem.EasyPaymentGateway;
-                serviceUrl = SelectEasyPaymentGateWayService(OwnerType.Mt, legalEntity);
-            }
-            else if (IsEasyPaymentGatewayAndSpot(paymentSystem, assetId, countryIso3Code))
-            {
-                cashInPaymentSystem = CashInPaymentSystem.EasyPaymentGateway;
-                serviceUrl = SelectEasyPaymentGateWayService(OwnerType.Spot);
-            }
-
-            if (!IsPaymentSystemSupported(cashInPaymentSystem, assetId))
-            {
-                throw new ArgumentException($"Asset {assetId} is not supported by {cashInPaymentSystem} payment system.");
-            }
+            var paymentSystemSelection = await SelectPaymentSystemAsync(walletId, assetId, countryIso3Code, paymentSystem);
 
             GetUrlDataResult urlData;
-            using (var paymentGatewayService = new PaymentGatewayServiceClient(serviceUrl))
+            using (var paymentGatewayService = new PaymentGatewayServiceClient(paymentSystemSelection.ServiceUrl))
             {
                 urlData = await paymentGatewayService.GetUrlData(transactionId, clientId, fullAmount, assetId, info);
             }
@@ -86,14 +65,33 @@ namespace Lykke.Service.PaymentSystem.Services.Services
                 ReloadRegexp = urlData.ReloadRegexp,
                 UrlsRegexp = urlData.UrlsRegexp,
                 ErrorMessage = urlData.ErrorMessage,
-                PaymentSystem = cashInPaymentSystem,
+                PaymentSystem = paymentSystemSelection.PaymentSystem,
             };
+
             return result;
         }
 
         public async Task<string> GenerateNewTransactionIdAsync()
         {
             return (await _identityRepository.GenerateNewIdAsync()).ToString();
+        }
+
+        public async Task<string> GetSourceClientIdAsync(string walletId, string clientPaymentSystem)
+        {
+            var ownerType = await _ownerTypeService.GetOwnerTypeAsync(walletId);
+
+            var legalEntity = ownerType == OwnerType.Mt
+                ? await _legalEntityService.GetLegalEntityAsync(walletId)
+                : string.Empty;
+
+            var serviceUrl = clientPaymentSystem == CashInPaymentSystem.CreditVoucher.ToString()
+                ? SelectCreditVouchersService()
+                : SelectEasyPaymentGateWayService(ownerType, legalEntity);
+
+            using (var paymentService = new PaymentGatewayServiceClient(serviceUrl))
+            {
+                return await paymentService.GetSourceClientId();
+            }
         }
 
         private bool IsPaymentSystemSupported(CashInPaymentSystem paymentSystem, string assetId)
@@ -135,6 +133,38 @@ namespace Lykke.Service.PaymentSystem.Services.Services
             }
 
             return result;
+        }
+
+        private async Task<PaymentSystemSelectionResult> SelectPaymentSystemAsync(string walletId, string assetId, string countryCode, string clientPaymentSystem)
+        {
+            var paymentSystem = CashInPaymentSystem.CreditVoucher;
+            var serviceUrl = SelectCreditVouchersService();
+
+            var ownerType = await _ownerTypeService.GetOwnerTypeAsync(walletId);
+
+            if (ownerType == OwnerType.Mt)
+            {
+                var legalEntity = await _legalEntityService.GetLegalEntityAsync(walletId);
+
+                paymentSystem = CashInPaymentSystem.EasyPaymentGateway;
+                serviceUrl = SelectEasyPaymentGateWayService(OwnerType.Mt, legalEntity);
+            }
+            else if (IsEasyPaymentGatewayAndSpot(clientPaymentSystem, assetId, countryCode))
+            {
+                paymentSystem = CashInPaymentSystem.EasyPaymentGateway;
+                serviceUrl = SelectEasyPaymentGateWayService(OwnerType.Spot);
+            }
+
+            if (!IsPaymentSystemSupported(paymentSystem, assetId))
+            {
+                throw new ArgumentException($"Asset {assetId} is not supported by {paymentSystem} payment system.");
+            }
+
+            return new PaymentSystemSelectionResult
+            {
+                PaymentSystem = paymentSystem,
+                ServiceUrl = serviceUrl
+            };
         }
 
         private string SelectCreditVouchersService()

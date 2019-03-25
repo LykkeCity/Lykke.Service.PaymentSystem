@@ -114,5 +114,17 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
         /// </param>
         Task<HttpOperationResponse<PaymentUrlDataResponse>> PostPaymentUrlDataWithHttpMessagesAsync(double amount, DepositOption depositOption, string clientId = default(string), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
+        /// <param name='walletId'>
+        /// </param>
+        /// <param name='clientPaymentSystem'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object>> GetSourceClientIdWithHttpMessagesAsync(string walletId = default(string), string clientPaymentSystem = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
     }
 }

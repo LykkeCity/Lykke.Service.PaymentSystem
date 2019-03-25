@@ -205,5 +205,35 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
                 }
             }
 
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='walletId'>
+            /// </param>
+            /// <param name='clientPaymentSystem'>
+            /// </param>
+            public static object GetSourceClientId(this IPaymentSystemAPI operations, string walletId = default(string), string clientPaymentSystem = default(string))
+            {
+                return operations.GetSourceClientIdAsync(walletId, clientPaymentSystem).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='walletId'>
+            /// </param>
+            /// <param name='clientPaymentSystem'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> GetSourceClientIdAsync(this IPaymentSystemAPI operations, string walletId = default(string), string clientPaymentSystem = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetSourceClientIdWithHttpMessagesAsync(walletId, clientPaymentSystem, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
     }
 }
