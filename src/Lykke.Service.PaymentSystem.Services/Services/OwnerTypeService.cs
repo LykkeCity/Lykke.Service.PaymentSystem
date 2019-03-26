@@ -17,6 +17,11 @@ namespace Lykke.Service.PaymentSystem.Services.Services
 
         public async Task<OwnerType> GetOwnerTypeAsync(string walletId)
         {
+            if (string.IsNullOrEmpty(walletId))
+            {
+                return OwnerType.Spot;
+            }
+
             var wallet = await _clientAccountClient.GetWalletAsync(walletId);
 
             if (wallet == null)
