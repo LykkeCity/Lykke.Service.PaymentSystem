@@ -153,7 +153,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             /// </param>
             /// <param name='cancelUrl'>
             /// </param>
-            public static PaymentUrlDataResponse PostPaymentUrlData(this IPaymentSystemAPI operations, double amount, DepositOption depositOption, string clientId = default(string), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string))
+            public static object PostPaymentUrlData(this IPaymentSystemAPI operations, double amount, DepositOption depositOption, string clientId = default(string), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string))
             {
                 return operations.PostPaymentUrlDataAsync(amount, depositOption, clientId, assetId, walletId, firstName, lastName, city, zip, address, country, email, phone, okUrl, failUrl, cancelUrl).GetAwaiter().GetResult();
             }
@@ -197,7 +197,7 @@ namespace Lykke.Service.PaymentSystem.Client.AutorestClient
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<PaymentUrlDataResponse> PostPaymentUrlDataAsync(this IPaymentSystemAPI operations, double amount, DepositOption depositOption, string clientId = default(string), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> PostPaymentUrlDataAsync(this IPaymentSystemAPI operations, double amount, DepositOption depositOption, string clientId = default(string), string assetId = default(string), string walletId = default(string), string firstName = default(string), string lastName = default(string), string city = default(string), string zip = default(string), string address = default(string), string country = default(string), string email = default(string), string phone = default(string), string okUrl = default(string), string failUrl = default(string), string cancelUrl = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.PostPaymentUrlDataWithHttpMessagesAsync(amount, depositOption, clientId, assetId, walletId, firstName, lastName, city, zip, address, country, email, phone, okUrl, failUrl, cancelUrl, null, cancellationToken).ConfigureAwait(false))
                 {

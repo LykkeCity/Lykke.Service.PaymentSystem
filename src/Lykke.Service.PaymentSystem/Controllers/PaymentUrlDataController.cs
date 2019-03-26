@@ -54,6 +54,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
         [HttpPost]
         [SwaggerOperation("PostPaymentUrlData")]
         [ProducesResponseType(typeof(PaymentUrlDataResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Post(PaymentUrlDataRequest model)
         {
             await _log.WriteWarningAsync("Test log", "", "Incoming request for payment url data");
@@ -129,10 +130,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
                 await _log.WriteWarningAsync(nameof(PaymentUrlDataController), nameof(Post), model.ToJson(),
                     urlData.ErrorMessage, DateTime.UtcNow);
 
-                return BadRequest(new
-                {
-                    message = urlData.ErrorMessage
-                });
+                return BadRequest(ErrorResponse.Create(urlData.ErrorMessage));
             }
 
             await _paymentTransactionsService.InsertPaymentTransactionAsync(

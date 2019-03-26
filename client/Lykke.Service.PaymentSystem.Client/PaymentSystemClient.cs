@@ -66,7 +66,19 @@ namespace Lykke.Service.PaymentSystem.Client
             string cancelUrl, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await _service.PostPaymentUrlDataAsync(amount ?? 0, depositOption, clientId, assetId, walletId, firstName, lastName, city, zip, address, country, email, phone, okUrl, failUrl, cancelUrl, cancellationToken);
+            var response = await _service.PostPaymentUrlDataAsync(amount ?? 0, depositOption, clientId, assetId, walletId, firstName, lastName, city, zip, address, country, email, phone, okUrl, failUrl, cancelUrl, cancellationToken);
+
+            if (response is ErrorResponse error)
+            {
+                throw new Exception(error.ErrorMessage);
+            }
+
+            if (response is PaymentUrlDataResponse result)
+            {
+                return result;
+            }
+
+            throw new Exception("Unexpected API response");
         }
 
         /// <summary>
