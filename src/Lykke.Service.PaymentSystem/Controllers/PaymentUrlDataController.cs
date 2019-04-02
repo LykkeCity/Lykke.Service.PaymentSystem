@@ -31,6 +31,8 @@ namespace Lykke.Service.PaymentSystem.Controllers
         private readonly IPersonalDataService _personalDataService;
         private readonly ILog _log;
 
+        private const int DefaultAccuracy = 2;
+
         public PaymentUrlDataController(
             IPaymentUrlDataService paymentUrlDataService,
             IPaymentTransactionEventLogService paymentTransactionEventLogService,
@@ -105,7 +107,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
 
             var asset = await _assetsService.AssetGetAsync(model.AssetId);
             var feeAmount = Math.Round(model.Amount * bankCardsFee.Percentage, 15);
-            var feeAmountTruncated = feeAmount.TruncateDecimalPlaces(asset.Accuracy, true);
+            var feeAmountTruncated = feeAmount.TruncateDecimalPlaces(asset.DisplayAccuracy ?? DefaultAccuracy, true);
 
             var urlData = await _paymentUrlDataService.GetUrlDataAsync(
                 paymentSystem.ToString(),
@@ -170,7 +172,7 @@ namespace Lykke.Service.PaymentSystem.Controllers
                 Url = urlData.PaymentUrl,
                 OkUrl = urlData.OkUrl,
                 FailUrl = urlData.FailUrl,
-                CancelUrl = urlData.CancelUrl,
+                CancelUrl = urlData.CancelUrl
             };
 
             return Ok(result);
