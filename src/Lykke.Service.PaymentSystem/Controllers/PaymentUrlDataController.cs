@@ -185,9 +185,6 @@ namespace Lykke.Service.PaymentSystem.Controllers
         [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetSourceClientId(string walletId, string clientPaymentSystem)
         {
-            if (string.IsNullOrEmpty(walletId))
-                return BadRequest(ErrorResponse.Create($"{nameof(walletId)} id can't be empty"));
-
             if (string.IsNullOrEmpty(clientPaymentSystem))
                 return BadRequest(ErrorResponse.Create($"{nameof(clientPaymentSystem)} id can't be empty"));
 
